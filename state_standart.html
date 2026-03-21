@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Держстандарт — Іноземна мова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & TOKENS ───────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0d1117;
+    --paper:     #f5f2eb;
+    --cream:     #ede9df;
+    --gold:      #c9a84c;
+    --gold-lt:   #e8d5a0;
+    --blue:      #1a3a6b;
+    --blue-lt:   #2d5fa8;
+    --teal:      #1a6b5a;
+    --teal-lt:   #28a08a;
+    --red:       #8b1a1a;
+    --red-lt:    #c94040;
+    --hat-white: #f8f8f2;
+    --hat-red:   #e63946;
+    --hat-black: #1d1d1d;
+    --hat-yellow:#f4c430;
+    --hat-green: #2d8c6e;
+    --hat-blue:  #1e4d8c;
+    --radius:    14px;
+    --shadow:    0 8px 32px rgba(13,17,23,.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Geologica', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ──────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink);
+    border-bottom: 3px solid var(--gold);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1rem, 5vw, 3rem);
+    height: 68px;
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-wrap svg { flex-shrink: 0; }
+  .logo-text {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700; font-size: .8rem;
+    color: var(--gold); letter-spacing: .08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .logo-text span { display: block; color: #fff; font-weight: 300; font-size: .65rem; letter-spacing: .18em; }
+
+  nav { display: flex; gap: clamp(.6rem, 2vw, 1.8rem); align-items: center; }
+  nav a {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .62rem; font-weight: 400;
+    color: #aab4c4;
+    text-decoration: none;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: .3rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  nav a:hover { color: var(--gold); border-color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav a:nth-child(n+3) { display: none; }
+  }
+
+  /* ── HERO ───────────────────────────────────────────────── */
+  #hero {
+    min-height: 100svh;
+    background: linear-gradient(145deg, var(--ink) 0%, #162032 55%, #0d2a1f 100%);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: clamp(3rem,8vh,6rem) clamp(1.2rem,6vw,5rem) clamp(2rem,5vh,4rem);
+    position: relative; overflow: hidden;
+  }
+
+  /* decorative circles */
+  #hero::before, #hero::after {
+    content: '';
+    position: absolute; border-radius: 50%;
+    pointer-events: none;
+  }
+  #hero::before {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+    top: -100px; right: -150px;
+  }
+  #hero::after {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,106,90,.18) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .65rem; font-weight: 400;
+    color: var(--gold); letter-spacing: .22em;
+    text-transform: uppercase; margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: #fff;
+    max-width: 800px; margin-bottom: .6rem;
+  }
+  .hero-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--gold), #e8d5a0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(.9rem,1.8vw,1.1rem);
+    color: #7a8fa8; max-width: 560px;
+    line-height: 1.65; margin-bottom: 3rem;
+  }
+
+  /* 6 HATS GRID */
+  .hats-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .6rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: #7a8fa8; margin-bottom: 1.2rem;
+  }
+
+  .hats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    max-width: 1100px;
+  }
+
+  .hat-card {
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.07);
+    backdrop-filter: blur(4px);
+    transition: transform .25s, box-shadow .25s;
+    cursor: default;
+    animation: fadeUp .6s ease both;
+  }
+  .hat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+
+  .hat-card:nth-child(1){ animation-delay:.05s }
+  .hat-card:nth-child(2){ animation-delay:.12s }
+  .hat-card:nth-child(3){ animation-delay:.19s }
+  .hat-card:nth-child(4){ animation-delay:.26s }
+  .hat-card:nth-child(5){ animation-delay:.33s }
+  .hat-card:nth-child(6){ animation-delay:.40s }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px) }
+    to   { opacity:1; transform:translateY(0) }
+  }
+
+  .hat-white  { background: rgba(248,248,242,.08); }
+  .hat-red    { background: rgba(230,57,70,.14); }
+  .hat-black  { background: rgba(29,29,29,.55); }
+  .hat-yellow { background: rgba(244,196,48,.1); }
+  .hat-green  { background: rgba(45,140,110,.15); }
+  .hat-blue   { background: rgba(30,77,140,.2); }
+
+  .hat-icon {
+    font-size: 2rem; margin-bottom: .7rem; display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));
+  }
+
+  .hat-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .1em;
+    margin-bottom: .5rem;
+  }
+  .hat-white  .hat-title { color: #f0f0e8; }
+  .hat-red    .hat-title { color: #ff8fa0; }
+  .hat-black  .hat-title { color: #c8c8c8; }
+  .hat-yellow .hat-title { color: var(--hat-yellow); }
+  .hat-green  .hat-title { color: #6ddcba; }
+  .hat-blue   .hat-title { color: #8bbfff; }
+
+  .hat-body {
+    font-size: .85rem; line-height: 1.65;
+    color: rgba(255,255,255,.72);
+  }
+
+  /* ── SECTION SHARED ─────────────────────────────────────── */
+  .section-wrap {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: clamp(3rem,8vh,6rem) clamp(1.2rem,5vw,4rem);
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: .58rem; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--blue);
+    background: var(--gold-lt);
+    border-radius: 4px; padding: .25rem .65rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--ink); margin-bottom: .6rem;
+  }
+
+  .section-desc {
+    font-size: 1rem; color: #4a5568;
+    max-width: 680px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── GROUP CARDS GRID ────────────────────────────────────── */
+  .group-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
+    padding: 1.8rem 2rem;
+    background: var(--ink);
+    border-radius: var(--radius);
+    color: #fff;
+    position: relative; overflow: hidden;
+  }
+
+  .group-header::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,.15));
+    pointer-events: none;
+  }
+
+  .group-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 4rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    opacity: .9;
+  }
+
+  .group-code {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .62rem; font-weight: 700;
+    letter-spacing: .18em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: .4rem;
+  }
+
+  .group-name {
+    font-size: clamp(.9rem,1.5vw,1.1rem);
+    line-height: 1.55; color: #e0ddd6;
+  }
+
+  .group-meta {
+    display: flex; gap: .8rem; flex-wrap: wrap;
+    margin-top: .8rem;
+  }
+
+  .group-badge {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .55rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: .28rem .75rem;
+    border-radius: 20px;
+  }
+  .badge-class  { background: rgba(201,168,76,.2); color: var(--gold-lt); border: 1px solid rgba(201,168,76,.35); }
+  .badge-count  { background: rgba(45,95,168,.3); color: #8bbfff; border: 1px solid rgba(45,95,168,.4); }
+
+  /* ── RESULT CARDS ───────────────────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 4rem;
+  }
+
+  .result-card {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--cream);
+    box-shadow: 0 2px 12px rgba(13,17,23,.06);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .22s, box-shadow .22s;
+    animation: fadeUp .5s ease both;
+  }
+  .result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(13,17,23,.13);
+  }
+
+  .card-top {
+    padding: 1.1rem 1.4rem .8rem;
+    border-bottom: 1px solid var(--cream);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: .8rem;
+  }
+
+  .card-code-pill {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .6rem; font-weight: 700;
+    background: var(--ink); color: var(--gold);
+    border-radius: 6px; padding: .3rem .7rem;
+    letter-spacing: .1em; white-space: nowrap; flex-shrink: 0;
+  }
+
+  .card-class-pill {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .55rem; font-weight: 700;
+    border-radius: 20px; padding: .25rem .65rem;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .cls-2 { background: #e8f0fb; color: var(--blue); border: 1px solid #c3d5f4; }
+  .cls-4 { background: #eafaf4; color: var(--teal); border: 1px solid #b3e8d5; }
+
+  .card-body { padding: 1.2rem 1.4rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+
+  .card-field-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .54rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: #9aa5b4; margin-bottom: .3rem;
+  }
+
+  .card-general {
+    font-size: .88rem; font-weight: 600;
+    color: var(--ink); line-height: 1.45;
+  }
+
+  .card-specific {
+    font-size: .84rem; color: #4a5568;
+    line-height: 1.62;
+    padding-left: 1rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* ── DIVIDER ────────────────────────────────────────────── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cream) 20%, var(--cream) 80%, transparent);
+    margin: 0 clamp(1.2rem,5vw,4rem);
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    color: #5a6880;
+    text-align: center;
+    padding: 2rem;
+    font-size: .78rem;
+    border-top: 3px solid var(--gold);
+    font-family: 'Unbounded', sans-serif;
+    letter-spacing: .08em;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── SCROLL REVEAL ──────────────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* stagger result-card */
+  .cards-grid .result-card:nth-child(1) { animation-delay: .05s }
+  .cards-grid .result-card:nth-child(2) { animation-delay: .10s }
+  .cards-grid .result-card:nth-child(3) { animation-delay: .15s }
+  .cards-grid .result-card:nth-child(4) { animation-delay: .20s }
+  .cards-grid .result-card:nth-child(5) { animation-delay: .25s }
+  .cards-grid .result-card:nth-child(6) { animation-delay: .30s }
+  .cards-grid .result-card:nth-child(7) { animation-delay: .35s }
+  .cards-grid .result-card:nth-child(8) { animation-delay: .40s }
+  .cards-grid .result-card:nth-child(9) { animation-delay: .45s }
+  .cards-grid .result-card:nth-child(10){ animation-delay: .50s }
+
+  /* ── SECTION ACCENT THEMES ──────────────────────────────── */
+  .section-tag.amber { color: #7c4a00; background: #fdecc0; }
+  .group-header.amber { background: linear-gradient(135deg,#3d2000 0%,#1a0e00 100%); }
+  .group-header.amber .group-num  { color:#f4c430; }
+  .group-header.amber .group-code { color:#f4c430; }
+  .group-header.amber .badge-class { background:rgba(244,196,48,.2); color:#f4c430; border-color:rgba(244,196,48,.35); }
+  .group-header.amber .badge-count { background:rgba(180,100,0,.3); color:#ffc86e; border-color:rgba(180,100,0,.4); }
+
+  .section-tag.teal { color:#0d4a3a; background:#c2f0e8; }
+  .group-header.teal { background:linear-gradient(135deg,#0d3028 0%,#061a14 100%); }
+  .group-header.teal .group-num  { color:#4dd8b8; }
+  .group-header.teal .group-code { color:#4dd8b8; }
+  .group-header.teal .badge-class { background:rgba(77,216,184,.2); color:#4dd8b8; border-color:rgba(77,216,184,.35); }
+  .group-header.teal .badge-count { background:rgba(26,107,90,.3); color:#80f0d8; border-color:rgba(26,107,90,.4); }
+
+  /* ── DUAL-PERIOD CARD (5–6 / 7–9) ──────────────────────── */
+  .dual-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px,1fr));
+    gap: 1.2rem; margin-bottom: 3rem;
+  }
+  @media(max-width:500px){ .dual-cards-grid{ grid-template-columns:1fr; } }
+
+  .dual-card {
+    background:#fff; border-radius:var(--radius);
+    border:1.5px solid var(--cream);
+    box-shadow:0 2px 12px rgba(13,17,23,.06);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:transform .22s,box-shadow .22s;
+    animation:fadeUp .5s ease both;
+  }
+  .dual-card:hover{ transform:translateY(-5px); box-shadow:0 14px 36px rgba(13,17,23,.13); }
+
+  .dual-card-top {
+    padding:.9rem 1.3rem .7rem;
+    border-bottom:1px solid var(--cream);
+    display:flex; align-items:center; gap:.8rem;
+  }
+  .dual-card-code {
+    font-family:'Unbounded',sans-serif; font-size:.58rem; font-weight:700;
+    background:var(--ink); color:var(--gold);
+    border-radius:6px; padding:.28rem .65rem;
+    letter-spacing:.1em; white-space:nowrap; flex-shrink:0;
+  }
+  .dual-card-general {
+    font-size:.87rem; font-weight:600; color:var(--ink);
+    line-height:1.4; padding:.85rem 1.3rem .5rem;
+  }
+
+  .dual-periods { display:grid; grid-template-columns:1fr 1fr; flex:1; }
+  @media(max-width:480px){ .dual-periods{ grid-template-columns:1fr; } }
+
+  .period-col { padding:.75rem 1.1rem 1rem; display:flex; flex-direction:column; gap:.45rem; }
+  .period-col:first-child { border-right:1px solid var(--cream); background:#fafcff; }
+
+  .period-label {
+    font-family:'Unbounded',sans-serif; font-size:.51rem; font-weight:700;
+    letter-spacing:.15em; text-transform:uppercase;
+    padding:.2rem .55rem; border-radius:20px;
+    display:inline-block; width:fit-content; margin-bottom:.15rem;
+  }
+  .label-56 { background:#e8f0fb; color:var(--blue); border:1px solid #c3d5f4; }
+  .label-79 { background:#eafaf4; color:var(--teal); border:1px solid #b3e8d5; }
+
+  .period-text {
+    font-size:.8rem; color:#4a5568; line-height:1.6;
+    padding-left:.75rem; border-left:3px solid var(--gold);
+  }
+  .period-text.empty { color:#b0bbc8; font-style:italic; border-left-color:#e0e0e0; }
+
+  /* stagger dual-card */
+  .dual-cards-grid .dual-card:nth-child(1){ animation-delay:.05s }
+  .dual-cards-grid .dual-card:nth-child(2){ animation-delay:.12s }
+  .dual-cards-grid .dual-card:nth-child(3){ animation-delay:.19s }
+  .dual-cards-grid .dual-card:nth-child(4){ animation-delay:.26s }
+  .dual-cards-grid .dual-card:nth-child(5){ animation-delay:.33s }
+  .dual-cards-grid .dual-card:nth-child(6){ animation-delay:.40s }
+  .dual-cards-grid .dual-card:nth-child(7){ animation-delay:.47s }
+  .dual-cards-grid .dual-card:nth-child(8){ animation-delay:.54s }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════════ -->
+<header>
+  <a class="logo-wrap" href="#hero" aria-label="Держстандарт">
+    <!-- SVG LOGO -->
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="44" height="44" rx="10" fill="#1a3a6b"/>
+      <path d="M8 22 L22 8 L36 22 L22 36 Z" fill="none" stroke="#c9a84c" stroke-width="2.2"/>
+      <path d="M14 22 L22 14 L30 22 L22 30 Z" fill="rgba(201,168,76,.2)" stroke="#c9a84c" stroke-width="1.2"/>
+      <circle cx="22" cy="22" r="3.5" fill="#c9a84c"/>
+      <circle cx="22" cy="8"  r="2" fill="#e8d5a0"/>
+      <circle cx="36" cy="22" r="2" fill="#e8d5a0"/>
+      <circle cx="22" cy="36" r="2" fill="#e8d5a0"/>
+      <circle cx="8"  cy="22" r="2" fill="#e8d5a0"/>
+    </svg>
+    <div class="logo-text">
+      Держстандарт
+      <span>Іноземна мова · 2020</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#hero">Огляд</a>
+    <a href="#e14">ІНО 1–4</a>
+    <a href="#ph59">ПРО 5–9</a>
+    <a href="#e59">ІНО 5–9</a>
+  </nav>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     HERO — 6 капелюхів Боно
+════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div>
+    <p class="hero-eyebrow">Держстандарт базової освіти · 2020 · Освітня галузь «Мови і літератури»</p>
+    <h1 class="hero-title">Результати навчання<br><em>іноземної мови</em><br>крізь 6 капелюхів</h1>
+    <p class="hero-sub">
+      Метод «Шість капелюхів мислення» Едварда де Боно — інструмент багатовимірного аналізу.
+      Розглянемо Держстандарт з іноземної мови з шести принципово різних перспектив.
+    </p>
+  </div>
+
+  <div>
+    <p class="hats-label">Шість перспектив аналізу стандарту</p>
+    <div class="hats-grid">
+
+      <div class="hat-card hat-white">
+        <span class="hat-icon">🎩</span>
+        <p class="hat-title">Білий капелюх — Факти</p>
+        <p class="hat-body">
+          Стандарт охоплює <strong style="color:#f0f0e8">3 групи результатів</strong> для 1–4 класів:
+          сприйняття інформації, розуміння текстів та надання інформації.
+          Усього <strong style="color:#f0f0e8">17 конкретних результатів</strong> навчання.
+          Результати прив'язані до 2-го і 4-го класів як контрольних точок.
+        </p>
+      </div>
+
+      <div class="hat-card hat-red">
+        <span class="hat-icon">🧢</span>
+        <p class="hat-title">Червоний капелюх — Емоції</p>
+        <p class="hat-body">
+          Стандарт <strong style="color:#ffb0bc">надихає</strong>: діти вже з 1 класу спілкуються
+          іноземною мовою! Можна відчути хвилювання першокласника, що вперше розуміє запитання
+          іноземною мовою і відповідає — нехай жестом, але розуміє. Це <em style="color:#ffb0bc">магічний момент</em>.
+        </p>
+      </div>
+
+      <div class="hat-card hat-black">
+        <span class="hat-icon">🖤</span>
+        <p class="hat-title">Чорний капелюх — Критика</p>
+        <p class="hat-body">
+          Контрольні точки лише у 2-му і 4-му класах — значна <strong style="color:#d8d8d8">прогалина</strong>
+          для моніторингу прогресу. Відсутні кількісні індикатори (словниковий запас, тривалість
+          монологу). Широкі формулювання ускладнюють об'єктивне оцінювання результатів.
+        </p>
+      </div>
+
+      <div class="hat-card hat-yellow">
+        <span class="hat-icon">💛</span>
+        <p class="hat-title">Жовтий капелюх — Оптимізм</p>
+        <p class="hat-body">
+          Комунікативний підхід — <strong style="color:#f4c430">сучасний і ефективний</strong>.
+          Акцент на реальному спілкуванні (запитати, відповісти, написати) формує практичні
+          навички з першого класу. Інтеграція онлайн-взаємодії у стандарт — <em style="color:#f4c430">перспективний крок</em>.
+        </p>
+      </div>
+
+      <div class="hat-card hat-green">
+        <span class="hat-icon">💚</span>
+        <p class="hat-title">Зелений капелюх — Творчість</p>
+        <p class="hat-body">
+          Ідея: доповнити стандарт <strong style="color:#6ddcba">STEM-інтеграцією</strong> —
+          описати фізичний дослід, пояснити математичну задачу іноземною мовою.
+          Можливість проєктних форматів: учні знімають відео-інструкції, ведуть щоденник
+          мандрівника, створюють персонажів з родовідними деревами англійською.
+        </p>
+      </div>
+
+      <div class="hat-card hat-blue">
+        <span class="hat-icon">💙</span>
+        <p class="hat-title">Синій капелюх — Процес</p>
+        <p class="hat-body">
+          Логіка стандарту чітка: від <strong style="color:#8bbfff">сприйняття → до розуміння → до продукування</strong>.
+          Три групи охоплюють аудіювання, читання та говоріння/письмо — повний комунікативний цикл.
+          Рекомендована послідовність освоєння: 1 → 2 → 3 група по кожному класу.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION e-1-4
+════════════════════════════════════════════════════════════ -->
+<section id="e14">
+  <div class="section-wrap">
+    <span class="section-tag reveal">Аркуш e-1-4 · Іноземна мова</span>
+    <h2 class="section-title reveal">Результати навчання<br>1–4 класи</h2>
+    <p class="section-desc reveal">
+      Обов'язкові результати навчання з іноземної мови для початкової школи згідно з
+      Державним стандартом базової та повної загальної середньої освіти (2020).
+      Усього <strong>17 результатів</strong> у трьох групах компетентностей.
+    </p>
+
+
+    <!-- ── GROUP 1 ── -->
+    <div id="group1" class="reveal">
+      <div class="group-header">
+        <div class="group-num">1</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 1</p>
+          <p class="group-name">Сприйняття інформації, висловленої іноземною мовою в умовах безпосереднього та опосередкованого міжкультурного спілкування, та критичне оцінювання інформації</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи: 2 та 4</span>
+            <span class="group-badge badge-count">4 результати</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 1.1]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Сприймає усну інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розуміє короткі, прості запитання, твердження, прохання/вказівки та реагує на них вербально та/або невербально</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 1.2]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Критично оцінює усну інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розпізнає знайомі слова і фрази під час сприйняття усної інформації</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 1.1]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Сприймає усну інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">визначає в усному повідомленні інформацію за різними завданнями на знайомі повсякденні теми</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 1.2]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Критично оцінює усну інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розуміє зміст усного висловлювання у знайомому повсякденному контексті</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /group1 -->
+
+
+    <!-- ── GROUP 2 ── -->
+    <div id="group2" class="reveal">
+      <div class="group-header">
+        <div class="group-num">2</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 2</p>
+          <p class="group-name">Розуміння прочитаних іншомовних текстів різних видів для здобуття інформації або для задоволення, використання прочитаної інформації та її критичне оцінювання</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи: 2 та 4</span>
+            <span class="group-badge badge-count">3 результати</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 2.1]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Сприймає текст</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розпізнає знайомі слова з опорою на наочність</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 2.1]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Аналізує прочитану інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розпізнає знайомі імена/назви, слова та елементарні фрази в коротких, простих текстах</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 2.2]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Аналізує прочитану інформацію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">визначає в тексті інформацію за різними завданнями на знайомі повсякденні теми</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /group2 -->
+
+
+    <!-- ── GROUP 3 ── -->
+    <div id="group3" class="reveal">
+      <div class="group-header">
+        <div class="group-num">3</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 3</p>
+          <p class="group-name">Надання інформації, висловлювання думок, почуттів та ставлення, взаємодія з іншими особами усно, письмово та в режимі реального часу з використанням іноземної мови</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи: 2 та 4</span>
+            <span class="group-badge badge-count">10 результатів</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 3.1]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює усну взаємодію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">запитує та повідомляє інформацію про себе та повсякденні справи, вживаючи короткі сталі вирази та використовуючи у разі потреби жести</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 3.2]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Усно висловлює власні думки, почуття, ставлення та позиції</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">описує себе та свій стан короткими фразами</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 3.3]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює письмову взаємодію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">надає найпростішу інформацію про себе у письмовій формі (записка, анкета)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 3.4]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Висловлює свої думки, почуття, ставлення та позиції письмово</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">пише короткими фразами про себе</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[2 ІНО 3.5]</span>
+            <span class="card-class-pill cls-2">2 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює взаємодію в режимі реального часу</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">пише короткі фрази в режимі реального часу у разі потреби з використанням словника</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 3.1]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює усну взаємодію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">спілкується на добре знайомі теми, реагує на прості твердження щодо задоволення нагальних потреб та висловлює такі потреби</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 3.2]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Усно висловлює власні думки, почуття, ставлення та позиції</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">розповідає про людей, навколишній світ та побут простими, окремими фразами та висловлює своє ставлення</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 3.3]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює письмову взаємодію</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">запитує та надає особисту інформацію у письмовій формі, використовуючи прості слова, короткі речення та сталі вирази</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 3.4]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Висловлює свої думки, почуття, ставлення та позиції письмово</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">надає у письмовій формі інформацію про себе, навколишній світ, побут, використовуючи прості слова та вирази</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-top">
+            <span class="card-code-pill">[4 ІНО 3.5]</span>
+            <span class="card-class-pill cls-4">4 клас</span>
+          </div>
+          <div class="card-body">
+            <div>
+              <p class="card-field-label">Загальний результат</p>
+              <p class="card-general">Здійснює взаємодію в режимі реального часу</p>
+            </div>
+            <div>
+              <p class="card-field-label">Конкретний результат</p>
+              <p class="card-specific">створює в режимі реального часу прості повідомлення за допомогою кількох коротких речень</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /group3 -->
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION ph-5-9 — Природничі науки 5–9 кл.
+════════════════════════════════════════════════════════════ -->
+<section id="ph59">
+  <div class="section-wrap">
+    <span class="section-tag amber reveal">Аркуш ph-5-9 · Природничі науки</span>
+    <h2 class="section-title reveal">Результати навчання<br>природничих наук 5–9 класи</h2>
+    <p class="section-desc reveal">
+      Обов'язкові результати з природничих наук (ПРО) для базової школи.
+      Кожна картка показує прогресію від <strong>5–6 класів</strong> до <strong>7–9 класів</strong> —
+      від навчання з допомогою вчителя до самостійної дослідницької діяльності.
+      Усього <strong>4 групи · 16 результатів</strong>.
+    </p>
+
+    <!-- GROUP 1 -->
+    <div class="reveal">
+      <div class="group-header amber">
+        <div class="group-num">1</div>
+        <div>
+          <p class="group-code">ПРО · Група результатів 1</p>
+          <p class="group-name">Формування дослідницьких умінь, усвідомлення ними значення в пізнанні природи та світу технологій</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">6 результатів</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.1</span></div>
+          <p class="dual-card-general">Вирізняє проблеми, які можна розв'язати засобами природничих наук, техніки і технологій</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">визначає і формулює з допомогою вчителя чи інших осіб проблему, яку можна розв'язати засобами природничих наук, техніки і технологій</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">формулює самостійно / в групі проблему дослідження / життєву / навчальну проблему, яка потребує розв'язання засобами природничих наук, техніки і технологій</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.2</span></div>
+          <p class="dual-card-general">Визначає мету і завдання дослідження та формулює гіпотезу</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">визначає мету і завдання дослідження, формулює очікувані результати відповідно до мети з допомогою вчителя чи інших осіб</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">визначає мету і завдання дослідження, формулює гіпотезу дослідження</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.3</span></div>
+          <p class="dual-card-general">Планує дослідження</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">визначає з допомогою вчителя чи інших осіб етапи дослідження; планує дослідження з допомогою вчителя чи інших осіб</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">визначає з допомогою вчителя чи інших осіб етапи дослідження відповідно до умов його виконання; планує дослідження самостійно</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.4</span></div>
+          <p class="dual-card-general">Досліджує (спостерігає, експериментує, моделює)</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">моделює з допомогою вчителя чи інших осіб об'єкти та явища; виконує з допомогою вчителя чи інших осіб спостереження, експерименти, фіксує одержані результати</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">моделює об'єкти і явища самостійно або з допомогою вчителя; спостерігає, виконує дослідження самостійно / в групі, фіксує одержані результати у самостійно визначений спосіб</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.5</span></div>
+          <p class="dual-card-general">Аналізує результати, формулює висновки, презентує результати дослідження</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">аналізує з допомогою вчителя результати дослідження за запропонованими критеріями; формулює з допомогою вчителя висновки щодо досягнення мети; презентує результати в запропонований спосіб</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">аналізує самостійно або з допомогою вчителя результати дослідження; оцінює правильність сформульованої гіпотези; формулює висновки самостійно; презентує результати у самостійно обраний спосіб</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 1.6</span></div>
+          <p class="dual-card-general">Здійснює рефлексію і самооцінювання</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">аналізує з допомогою вчителя виконання етапів дослідження; виявляє емоційно-ціннісне ставлення до власних досліджень</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">аналізує виконання етапів дослідження, самостійно оцінює ризики; виявляє емоційно-ціннісне ставлення до власних досліджень</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /ph group1 -->
+
+    <!-- GROUP 2 -->
+    <div class="reveal">
+      <div class="group-header amber">
+        <div class="group-num">2</div>
+        <div>
+          <p class="group-code">ПРО · Група результатів 2</p>
+          <p class="group-name">Здобуття, опрацювання та використання інформації природничого змісту для розв'язання навчальних і життєвих проблем</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">2 результати</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 2.1</span></div>
+          <p class="dual-card-general">Знаходить, оцінює, систематизує та використовує інформацію природничого змісту</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">здійснює пошук, оцінює і систематизує з допомогою вчителя чи інших осіб інформацію природничого змісту</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">здійснює пошук, оцінює і систематизує самостійно інформацію природничого змісту</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 2.2</span></div>
+          <p class="dual-card-general">Перетворює та презентує інформацію природничого змісту</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">презентує з допомогою вчителя чи інших осіб інформацію природничого змісту в обраний спосіб; перетворює текстову інформацію в графічну, табличну, інфографіку</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">перетворює та презентує самостійно інформацію природничого змісту в обраний спосіб; створює самостійно / в групі графічну, табличну інформацію, інфографіку, моделі природничого змісту</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /ph group2 -->
+
+    <!-- GROUP 3 -->
+    <div class="reveal">
+      <div class="group-header amber">
+        <div class="group-num">3</div>
+        <div>
+          <p class="group-code">ПРО · Група результатів 3</p>
+          <p class="group-name">Усвідомлення розмаїття і закономірностей природи, ролі природничих наук і техніки в житті людини; відповідальна поведінка для сталого розвитку суспільства</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">3 результати</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 3.1 / 3.2</span></div>
+          <p class="dual-card-general">Характеризує і класифікує об'єкти, явища та процеси природи</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">характеризує з допомогою вчителя об'єкти, явища та процеси природи; класифікує з допомогою вчителя об'єкти, явища та процеси природи</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">характеризує самостійно об'єкти, явища та процеси природи; класифікує самостійно об'єкти, явища та процеси природи</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 3.3</span></div>
+          <p class="dual-card-general">Виявляє взаємозв'язки об'єктів і явищ природи</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">встановлює з допомогою вчителя взаємозв'язки природних об'єктів, явищ і процесів; прогнозує з допомогою вчителя вплив природних об'єктів і явищ на життєдіяльність людини</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">встановлює самостійно взаємозв'язки природних об'єктів, явищ і процесів, прогнозує їх; характеризує вплив науково-технічного прогресу на природу і суспільство</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 3.4</span></div>
+          <p class="dual-card-general">Усвідомлює значення природничих наук, технологій, техніки</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">з'ясовує і пояснює з допомогою вчителя значення природничих наук, технологій і техніки в житті людини</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">пояснює самостійно або з допомогою вчителя значення природничих наук, технологій і техніки в житті людини; усвідомлює важливість природничих знань і технічних умінь для власного життя</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /ph group3 -->
+
+    <!-- GROUP 4 -->
+    <div class="reveal">
+      <div class="group-header amber">
+        <div class="group-num">4</div>
+        <div>
+          <p class="group-code">ПРО · Група результатів 4</p>
+          <p class="group-name">Розвиток наукового мислення, набуття досвіду розв'язання проблем природничого змісту (індивідуально та у співпраці)</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">5 результатів</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 4.1</span></div>
+          <p class="dual-card-general">Розрізняє наукове і ненаукове мислення</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">вирізняє з допомогою вчителя наукову інформацію з-поміж іншої і використовує її у своїй діяльності</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">розрізняє самостійно наукову та ненаукову інформацію, використовує її у своїй діяльності</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 4.2</span></div>
+          <p class="dual-card-general">Усвідомлює проблему і формулює її як протиріччя в пізнавальній діяльності</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">розпізнає з допомогою вчителя невідомі для себе знання; виявляє суперечності в знаннях і формулює запитання щодо їх пояснення</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">визначає самостійно / в групі протиріччя в пізнавальній діяльності; формулює самостійно проблему як протиріччя в пізнавальній діяльності</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 4.3</span></div>
+          <p class="dual-card-general">Пропонує стратегії розв'язання проблем природничого змісту</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">використовує самостійно або з допомогою вчителя здобуті знання, досвід для генерування ідей розв'язання навчальної / життєвої проблеми</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">визначає самостійно / в групі стратегії розв'язання навчальної / життєвої проблеми; генерує ідеї для розв'язання проблеми, оцінює можливості реалізації їх</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 4.4</span></div>
+          <p class="dual-card-general">Працює в групі для розв'язання проблеми</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">розуміє значення співробітництва у розв'язанні навчальної / життєвої проблеми; пропонує варіанти співпраці в групі</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">планує та реалізовує самостійно / в групі роботу для розв'язання проблеми; взаємодіє в групі і усвідомлює особисту відповідальність за досягнення спільного результату</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ПРО 4.5</span></div>
+          <p class="dual-card-general">Оцінює власну діяльність / діяльність групи</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">виявляє емоційно-ціннісне ставлення до власних дій / дій групи для досягнення результату; оцінює за критеріями з допомогою вчителя власну діяльність</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">виявляє емоційно-ціннісне ставлення до індивідуальної / спільної діяльності та досягнутих результатів; аналізує самостійно / з допомогою вчителя діяльність групи</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /ph group4 -->
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION e-5-9 — Іноземна мова 5–9 кл.
+════════════════════════════════════════════════════════════ -->
+<section id="e59">
+  <div class="section-wrap">
+    <span class="section-tag teal reveal">Аркуш e-5-9 · Іноземна мова</span>
+    <h2 class="section-title reveal">Результати навчання<br>іноземної мови 5–9 класи</h2>
+    <p class="section-desc reveal">
+      Обов'язкові результати з іноземної мови (ІНО) для базової школи.
+      Кожна картка демонструє прогресію від <strong>5–6 класів</strong> до <strong>7–9 класів</strong>:
+      від простих комунікативних завдань до впевненої самостійної взаємодії.
+      Усього <strong>3 групи · 19 результатів</strong>.
+    </p>
+
+    <!-- GROUP 1 -->
+    <div class="reveal">
+      <div class="group-header teal">
+        <div class="group-num">1</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 1</p>
+          <p class="group-name">Сприйняття усної інформації та письмових текстів іноземною мовою в умовах безпосереднього та опосередкованого міжкультурного спілкування</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">8 результатів</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.1 · Розмова</span></div>
+          <p class="dual-card-general">Сприймає усну інформацію — розуміє розмову між іншими особами</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">розуміє розмову між іншими особами, якщо мовлення чітке та повільне; визначає мовленнєву ситуацію та зміст короткої простої розмови</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">розуміє розмову між іншими особами, якщо мовлення чітке та повільне; стежить за основним змістом розгорнутої дискусії</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.1 · Аудіо/відео</span></div>
+          <p class="dual-card-general">Сприймає усну інформацію — аудіозаписи та відеозаписи</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">виокремлює основну інформацію з коротких аудіозаписів щодо повсякденних передбачуваних питань; визначає теми у переглянутих відеозаписах</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">розпізнає основний зміст і окремі деталі усних повідомлень; розуміє оголошення в аеропортах, на вокзалах, у транспорті, якщо мовлення чітке та повільне</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.2 · Листи</span></div>
+          <p class="dual-card-general">Сприймає письмовий текст — особиста кореспонденція</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">розуміє прочитану особисту кореспонденцію, якщо використано прості мовні засоби; розпізнає знайомі імена, слова та основні фрази</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">розуміє прочитану особисту кореспонденцію; визначає зміст описів подій, почуттів та побажань в особистих листах, листівках для регулярного спілкування з друзями</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.2 · Пошук</span></div>
+          <p class="dual-card-general">Сприймає письмовий текст — пошук інформації та аргументації</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">виокремлює відповідну інформацію з текстів, які описують людей, місця, повсякденне життя, культуру; розпізнає інформацію в ілюстрованих брошурах і туристичних картах</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">виокремлює інформацію про події та емоції з прочитаних простих особистих листів, листівок, зокрема онлайн-повідомлень</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.2 · Інструкції</span></div>
+          <p class="dual-card-general">Сприймає письмові інструкції та тексти для задоволення</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">встановлює послідовність виконання простих інструкцій до побутових пристроїв, продуктів харчування; визначає про що йдеться в коротких розповідях, коміксах</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">читає прості чіткі інструкції до побутових приладів, приготування їжі; розпізнає докладний опис місць, подій, почуттів і планів у прочитаних оповіданнях, путівниках</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 1.3</span></div>
+          <p class="dual-card-general">Використовує ефективні стратегії сприймання усної інформації та письмового тексту</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">розуміє загальний зміст коротких текстів і конкретні висловлювання на повсякденні теми; виявляє ймовірне значення невідомих слів із контексту</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">співвідносить зміст частини тексту із змістом тексту в цілому; визначає з контексту значення окремих невідомих слів; робить висновки або прогнози щодо змісту тексту із заголовку</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /e59 group1 -->
+
+    <!-- GROUP 2 -->
+    <div class="reveal">
+      <div class="group-header teal">
+        <div class="group-num">2</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 2</p>
+          <p class="group-name">Взаємодія з іншими особами в усній і письмовій формі та в режимі реального часу засобами іноземної мови</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">8 результатів</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.1 · Розмова</span></div>
+          <p class="dual-card-general">Здійснює усну взаємодію — бере участь у розмові</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">бере участь у простій розмові на знайому тему; використовує прості фрази для ініціації та завершення розмови; розпитує та розповідає про навчання та дозвілля</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">цілеспрямовано співпрацює із співрозмовником; визначає основний зміст сказаного; висловлює припущення щодо можливого вирішення питання, наводячи аргументи</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.2 · Листи</span></div>
+          <p class="dual-card-general">Здійснює письмову взаємодію — особисті листи</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">повідомляє особисту стандартну інформацію, представляючи себе; пише короткі прості листи-подяки та листи-вибачення; пише короткі прості текстові повідомлення</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">пише особисті листи, детально описує власний досвід, почуття та події; пише прості листи та електронні повідомлення фактологічного характеру; пише прості заявки</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.2 · Записки</span></div>
+          <p class="dual-card-general">Здійснює письмову взаємодію — записки, повідомлення, бланки</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">пише короткі прості записки та повідомлення, що стосуються важливих потреб</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">пише записки, що передають нагальну інформацію друзям, працівникам сфери обслуговування, вчителям та іншим особам, у доступній формі пояснюючи те, що вважає важливим</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.3</span></div>
+          <p class="dual-card-general">Здійснює онлайн-взаємодію</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">заповнює онлайн-анкету, повідомляє особисті та інші дані; цілеспрямовано налагоджує онлайн-співпрацю</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">виконує інструкції та ставить запитання або просить роз'яснення, щоб виконати спільне онлайн-завдання</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.4 · Ініціація</span></div>
+          <p class="dual-card-general">Використовує ефективні стратегії взаємодії — ініціює та підтримує розмову</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">ініціює, підтримує та закінчує коротку просту розмову; використовує прості прийоми, щоб почати, підтримати або закінчити коротку розмову чи дискусію</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">використовує власний мовленнєвий досвід та комунікативні стратегії, щоб підтримувати розмову чи дискусію; узагальнює основну думку, висловлену в дискусії</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 2.4 · Уточнення</span></div>
+          <p class="dual-card-general">Використовує ефективні стратегії взаємодії — просить уточнити інформацію</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">просить співрозмовника повторити, якщо не розуміє отриманої інформації; демонструє, що слідкує за ходом короткої простої розмови</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">просить уточнити, роз'яснити деталі отриманої інформації; запитує про додаткові деталі та просить роз'яснення у співрозмовників, щоб підтримувати розмову</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /e59 group2 -->
+
+    <!-- GROUP 3 -->
+    <div class="reveal">
+      <div class="group-header teal">
+        <div class="group-num">3</div>
+        <div>
+          <p class="group-code">ІНО · Група результатів 3</p>
+          <p class="group-name">Надання інформації, висловлювання думок, почуттів та ставлення іноземною мовою</p>
+          <div class="group-meta">
+            <span class="group-badge badge-class">Класи 5–6 та 7–9</span>
+            <span class="group-badge badge-count">3 результати</span>
+          </div>
+        </div>
+      </div>
+      <div class="dual-cards-grid">
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 3.2</span></div>
+          <p class="dual-card-general">Створює письмові висловлення</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">пише короткі прості зв'язні тексти, що стосуються повсякденних питань; пише прості зв'язні повідомлення про людей і місця</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">пише прості зв'язні тексти на знайомі теми; пише прості, детальні повідомлення на знайомі теми; розповідає про свій досвід, описує почуття і реакції</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 3.3 · Пошук слова</span></div>
+          <p class="dual-card-general">Використовує ефективні стратегії побудови висловлювання — знаходить способи висловлення думки</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text empty">Конкретний результат відсутній для цього рівня</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">знаходить інші способи висловлення думки, якщо не може пригадати потрібне слово; характеризує предмет чи явище, для точного визначення якого не може пригадати слова</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dual-card">
+          <div class="dual-card-top"><span class="dual-card-code">ІНО 3.3 · Помилки</span></div>
+          <p class="dual-card-general">Використовує ефективні стратегії побудови висловлювання — зауважує та виправляє помилки</p>
+          <div class="dual-periods">
+            <div class="period-col">
+              <span class="period-label label-56">5–6 клас</span>
+              <p class="period-text">зауважує та виправляє власні прості мовні помилки; у разі потреби просить співрозмовника підтвердити, що мовна форма є коректною</p>
+            </div>
+            <div class="period-col">
+              <span class="period-label label-79">7–9 клас</span>
+              <p class="period-text">зауважує та виправляє власні мовні помилки, уникаючи непорозуміння; виправляє помилки у вживанні часових форм; використовує інші стратегії для уникнення непорозумінь</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /e59 group3 -->
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer>
+  Держстандарт базової та повної загальної середньої освіти <span>2020</span> · Освітні галузі «Мови і літератури» та «Природничі науки» · Класи 1–4 · 5–9
+</footer>
+
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Stagger cards inside each group on reveal
+  document.querySelectorAll('.cards-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.result-card');
+    cards.forEach((card, i) => {
+      card.style.animationDelay = `${i * 0.07}s`;
+    });
+  });
+</script>
+</body>
+</html>
