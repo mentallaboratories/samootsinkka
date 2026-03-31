@@ -6,7 +6,7 @@
 <title>STEP — Studying TEaching Parenting Self Training Educative Project</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
-<!-- <style>
+<style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -344,108 +344,162 @@
   .skill-group:nth-child(3){animation-delay:.24s}
   .comp-item:nth-child(odd){animation-delay:.04s}
   .comp-item:nth-child(even){animation-delay:.1s}
-</style> -->
-<link rel="stylesheet" href="styles.css">
+
+  /* ── BLOOM TAXONOMY ── */
+
+  /* Header block */
+  .bloom-header {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 1.5rem; align-items: center;
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 1.6rem 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--gold);
+    position: relative; overflow: hidden;
+  }
+  .bloom-header::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,.08));
+    pointer-events: none;
+  }
+
+  /* Done widget circle */
+  .vidget {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .vidget.remember__mode { background: rgba(108,92,231,.25); border: 2px solid rgba(108,92,231,.5); }
+  .vidget .done {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 3px solid rgba(201,168,76,.6);
+    position: relative;
+  }
+  .vidget .done::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .bloom-header .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(.85rem,1.8vw,1.25rem);
+    font-weight: 900; color: #fff;
+    letter-spacing: .02em; margin-bottom: .4rem;
+  }
+  .bloom-header .section-title.skill-up {
+    background: linear-gradient(90deg, var(--gold), #e8d5a0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .bloom-header .aim {
+    font-family: 'Geologica', sans-serif;
+    font-size: .88rem; font-weight: 500;
+    color: #c8d4e0; margin-bottom: .4rem;
+  }
+  .bloom-header .info {
+    font-size: .78rem; color: #6a7585; line-height: 1.6;
+  }
+
+  /* Bloom routines grid */
+  .bloom-routines {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Bloom column card */
+  .bloom {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1.5px solid var(--cream);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(13,17,23,.05);
+    transition: transform .22s, box-shadow .22s;
+    animation: fadeUp .45s ease both;
+  }
+  .bloom:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(13,17,23,.12);
+  }
+
+  /* Level-specific accent colours */
+  .bloom.remember__mode  { border-top: 3px solid #6c5ce7; }
+  .bloom.understand__mode{ border-top: 3px solid #2d5fa8; }
+  .bloom.apply__mode     { border-top: 3px solid #1a6b5a; }
+  .bloom.analize__mode   { border-top: 3px solid #c9a84c; }
+  .bloom.evaluate__mode  { border-top: 3px solid #c0511a; }
+  .bloom.create__mode    { border-top: 3px solid #8b1a1a; }
+
+  /* Title bar */
+  .routine-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .62rem; font-weight: 900;
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .75rem 1rem .6rem;
+    border-bottom: 1px solid var(--cream);
+  }
+  .remember__mode  .routine-title { background:#f0eeff; color:#6c5ce7; }
+  .understand__mode .routine-title{ background:#edf2fc; color:#2d5fa8; }
+  .apply__mode     .routine-title { background:#eaf5f2; color:#1a6b5a; }
+  .analize__mode   .routine-title { background:#fdf8e8; color:#8a6800; }
+  .evaluate__mode  .routine-title { background:#fdf0e8; color:#c0511a; }
+  .create__mode    .routine-title { background:#fdf0f0; color:#8b1a1a; }
+
+  /* Routine items */
+  .mode-routines {
+    list-style: none;
+    padding: .6rem .8rem .9rem;
+    display: flex; flex-direction: column; gap: .35rem;
+  }
+  .mode-routine {
+    font-family: 'Geologica', sans-serif;
+    font-size: .78rem; font-weight: 400; color: #4a5568;
+    padding: .32rem .7rem;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+    cursor: default;
+  }
+  .bloom.remember__mode  .mode-routine:hover { background:#f0eeff; color:#6c5ce7; }
+  .bloom.understand__mode .mode-routine:hover{ background:#edf2fc; color:#2d5fa8; }
+  .bloom.apply__mode     .mode-routine:hover { background:#eaf5f2; color:#1a6b5a; }
+  .bloom.analize__mode   .mode-routine:hover { background:#fdf8e8; color:#8a6800; }
+  .bloom.evaluate__mode  .mode-routine:hover { background:#fdf0e8; color:#c0511a; }
+  .bloom.create__mode    .mode-routine:hover { background:#fdf0f0; color:#8b1a1a; }
+
+  /* animation stagger */
+  .bloom:nth-child(1){animation-delay:.05s}
+  .bloom:nth-child(2){animation-delay:.11s}
+  .bloom:nth-child(3){animation-delay:.17s}
+  .bloom:nth-child(4){animation-delay:.23s}
+  .bloom:nth-child(5){animation-delay:.29s}
+  .bloom:nth-child(6){animation-delay:.35s}
+</style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container">
-    <div class="header__container">
-
-      <a class="logo home" href="./index.html">
-        <span class="accent">Skool</span>Timez
-      </a>
-
-      <nav class="header__nav">
-        <ul class="nav">
-
-          <li>
-            <a class="nav__item" href="./index.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-home"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./index.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item" href="./it.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./it.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item" href="./timetable.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./timetable.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item" href="./guide.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./guide.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item current" href="./storage.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./storage.html</span>
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-
-      <!-- Hamburger -->
-      <button type="button" class="menu-btn" id="menuOpen">
-        <svg class="rotate180" width="48" height="48">
-          <use href="icon.svg#icon-steps"/>
-        </svg>
-      </button>
-
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="logo-step"><span class="s">S</span>TEP</div>
+      <div class="logo-tagline">
+        Studying · TEaching · Parenting<br>
+        Self Training · Educative Project
+      </div>
     </div>
-  </div>
-
-  <!-- Mobile modal -->
-  <div class="mob-modal is-hidden" id="mobModal">
-    <button type="button" class="close__button" id="menuClose">
-      <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
-    </button>
-    <ul class="mob-menu__nav">
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
-        <a class="mob-menu__link" href="./index.html">./index.html</a>
-      </li>
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
-        <a class="mob-menu__link" href="./it.html">./it.html</a>
-      </li>
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
-        <a class="mob-menu__link" href="./timetable.html">./timetable.html</a>
-      </li>
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
-        <a class="mob-menu__link" href="./guide.html">./guide.html</a>
-      </li>
-      <li class="mob-nav__item current">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
-        <a class="mob-menu__link" href="./storage.html">./storage.html</a>
-      </li>
-    </ul>
+    <div class="header-intro">
+      <strong>Цей посібник</strong> — проєктно-орієнтований набір інструкцій, виконання яких підвищує загальний рівень учасника процесу та дає змогу контролювати свій навчальний процес і створювати портфоліо проєктів, які можуть пригодитися в подальшому навчанні.<br><br>
+      Проєкти підібрані відповідно до вимог держстандарту щодо навичок та здібностей учасників — це трикутник, на якому тримається освіта.
+    </div>
   </div>
 </header>
 
@@ -560,6 +614,112 @@
   </div>
 </section>
 
+<!-- BLOOM TAXONOMY -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Саморозвиток</p>
+    <h2 class="reveal">Таксономія Блума — <em>рівні навчання</em></h2>
+    <p class="reveal" style="font-size:.88rem;color:#6a7585;max-width:600px;line-height:1.7;margin-bottom:2rem;">
+      Bloom's Taxonomy — набір рівнів когнітивної діяльності для розвитку навичок самостійного навчання. 6 рівнів від простого запам'ятовування до творчого створення.
+    </p>
+
+    <div class="reveal">
+      <div class="bloom-header">
+        <div class="vidget learn remember__mode">
+          <div class="done"></div>
+        </div>
+        <div class="thumb">
+          <h1 class="section-title skill-up">Developing of Self Learning Skills</h1>
+          <h2 class="aim">Learn what is Bloom Taxonomy and how to use it.</h2>
+          <p class="info">Bloom's Taxonomy is a set of exercises divided into 6 layers — from basic recall to complex creation. Each level builds on the previous one.</p>
+        </div>
+      </div>
+
+      <div class="bloom-routines">
+
+        <div class="bloom remember__mode">
+          <h3 class="routine-title">remember</h3>
+          <ul class="mode-routines remember__mode">
+            <li class="mode-routine">copy</li>
+            <li class="mode-routine">find</li>
+            <li class="mode-routine">listen</li>
+            <li class="mode-routine">repeat</li>
+            <li class="mode-routine">search</li>
+            <li class="mode-routine">Google</li>
+            <li class="mode-routine">identify</li>
+          </ul>
+        </div>
+
+        <div class="bloom understand__mode">
+          <h3 class="routine-title">understand</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">compare</li>
+            <li class="mode-routine">contrast</li>
+            <li class="mode-routine">examplify</li>
+            <li class="mode-routine">comment</li>
+            <li class="mode-routine">estimate</li>
+            <li class="mode-routine">extend</li>
+            <li class="mode-routine">paraphrase</li>
+          </ul>
+        </div>
+
+        <div class="bloom apply__mode">
+          <h3 class="routine-title">apply</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">articulate</li>
+            <li class="mode-routine">sketch</li>
+            <li class="mode-routine">choose</li>
+            <li class="mode-routine">execute</li>
+            <li class="mode-routine">examine</li>
+            <li class="mode-routine">implement</li>
+            <li class="mode-routine">experiment</li>
+          </ul>
+        </div>
+
+        <div class="bloom analize__mode">
+          <h3 class="routine-title">analize</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">calculate</li>
+            <li class="mode-routine">categorize</li>
+            <li class="mode-routine">estimate</li>
+            <li class="mode-routine">question</li>
+            <li class="mode-routine">explain</li>
+            <li class="mode-routine">integrate</li>
+            <li class="mode-routine">distinguish</li>
+          </ul>
+        </div>
+
+        <div class="bloom evaluate__mode">
+          <h3 class="routine-title">evaluate</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">test</li>
+            <li class="mode-routine">debate</li>
+            <li class="mode-routine">comment</li>
+            <li class="mode-routine">reflect</li>
+            <li class="mode-routine">predict</li>
+            <li class="mode-routine">edit</li>
+            <li class="mode-routine">review</li>
+          </ul>
+        </div>
+
+        <div class="bloom create__mode">
+          <h3 class="routine-title">create</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">blog</li>
+            <li class="mode-routine">build</li>
+            <li class="mode-routine">write</li>
+            <li class="mode-routine">collaborate</li>
+            <li class="mode-routine">podcast</li>
+            <li class="mode-routine">film</li>
+            <li class="mode-routine">programme</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 10 COMPETENCES -->
 <section>
   <div class="container">
@@ -604,213 +764,9 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-container">
-
-      <!-- School Timetable / Subjects -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">School Timetable. Subjects</h3>
-        <ul class="skills__list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-docs"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-ukr-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-physics"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Bloom Taxonomy levels -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Learning skill levels (Bloom taxonomy)</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn remember__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-head"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn understand__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn apply__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-steps"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn analize__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-planning"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn evaluate__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- IT skills -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">IT skills and tools</h3>
-        <ul class="skills__list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-input"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-processing"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-output"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Time management -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Planning. Time management</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-clock"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-second"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-calendar"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Language skills -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Language skills</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn remember__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-listening-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn understand__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-reading-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn apply__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-speaking-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn analize__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-writing-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn evaluate__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-vocab-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Function icons -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Function Icons</h3>
-        <ul class="mob-menu-list">
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-done"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-question"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-minus"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-multiply"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-divide"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-arrow"/></svg></div></li>
-        </ul>
-      </div>
-
-    </div><!-- /footer-container -->
-
-    <!-- Bottom bar -->
-    <div class="footer-bottom">
-      <p class="footer-copy">
-        <span>SkoolTimez</span> · Освітній проєкт · Open source ·
-        <span>2024–2025</span>
-      </p>
-      <p class="footer-copy" style="color:#2a3240;">
-        icon.svg sprite · Unbounded + Geologica · Dark theme
-      </p>
-    </div>
-
-  </div>
+<footer>
+  STEP — Studying TEaching Parenting Self Training Educative Project &nbsp;|&nbsp;
+  <a href="https://novoshkola.com.ua/21st_century_skills1">novoshkola.com.ua</a>
 </footer>
 
 <script>
