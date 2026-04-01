@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Raleway:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -597,131 +596,12 @@
     .header-links { display: none; }
   }
 </style>
-
 </head>
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container">
-    <div class="header__container">
-
-      <a class="logo home" href="./index.html">
-        <span class="accent">Skool</span>Timez
-      </a>
-
-      <nav class="header__nav">
-        <ul class="nav">
-
-          <li>
-            <a class="nav__item" href="./index.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-home"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./index.html</span>
-            </a>
-          </li>
-
-          <!-- <li>
-            <a class="nav__item" href="./it.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./it.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item" href="./timetable.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./timetable.html</span>
-            </a>
-          </li> -->
-
-          <!-- <li>
-            <a class="nav__item" href="./guide.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./guide.html</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="nav__item current" href="./storage.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./storage.html</span>
-            </a>
-          </li> -->
-          <li>
-            <a class="nav__item current" href="state_standart.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./state_standart.html</span>
-            </a>
-          </li>
-          <li>
-            <a class="nav__item current" href="projects.html">
-              <div class="nav__icon">
-                <svg width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
-              </div>
-              <span class="nav__link--gdisk">./projects.html</span>
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-
-      <!-- BUTTON THAT OPENS MOBILE MENU -->
-      <button type="button" class="menu-btn is-hidden" data-popup-open>
-        <svg class="rotate180" width="48" height="48">
-          <use href="icon.svg#icon-steps"/>
-        </svg>
-      </button>
-
-    </div>
-  </div>
-
-  <!-- Mobile modal -->
-  <div class="mob-modal is-hidden" data-popup>
-    <button type="button" class="close__button" data-popup-close>
-      <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
-    </button>
-    <ul class="mob-menu__nav">
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
-        <a class="mob-menu__link" href="./index.html">./index.html</a>
-      </li>
-      <!-- <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
-        <a class="mob-menu__link" href="./it.html">./it.html</a>
-      </li>
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
-        <a class="mob-menu__link" href="./timetable.html">./timetable.html</a>
-      </li>
-      <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
-        <a class="mob-menu__link" href="./guide.html">./guide.html</a>
-      </li>
-      <li class="mob-nav__item current">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
-        <a class="mob-menu__link" href="./storage.html">./storage.html</a>
-      </li> -->
-       <li class="mob-nav__item">
-        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg></div>
-        <a class="mob-menu__link" href="state_standart.html">./state_standart.html</a>
-      </li>
-    </ul>
-  </div>
-  
-</header>
-<div class="header-inner">
+<header>
+  <div class="header-inner">
     <div class="header-logo">
       @skooltimez
       <span>Освітній контент · Мацала В.В.</span>
@@ -731,9 +611,10 @@
       <a href="https://www.youtube.com/@skooltimez" target="_blank" class="header-link youtube">▶ YouTube</a>
     </div>
   </div>
+</header>
+
 <!-- HERO -->
 <section class="hero">
-  
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow">Самооцінювання навчальної діяльності</div>
@@ -959,224 +840,9 @@
 </section>
 
 <!-- FOOTER -->
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-container">
-
-      <!-- School Timetable / Subjects -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">School Timetable. Subjects</h3>
-        <ul class="skills__list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-docs"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-ukr-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-physics"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Bloom Taxonomy levels -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Learning skill levels (Bloom taxonomy)</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn remember__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-head"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn understand__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn apply__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-steps"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn analize__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-planning"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn evaluate__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- IT skills -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">IT skills and tools</h3>
-        <ul class="skills__list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-input"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-processing"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-output"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Time management -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Planning. Time management</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-clock"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-second"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-calendar"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="time-btn">
-              <svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Language skills -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Language skills</h3>
-        <ul class="mob-menu-list">
-          <li>
-            <div class="set-btn">
-              <svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn remember__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-listening-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn understand__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-reading-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn apply__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-speaking-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn analize__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-writing-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn evaluate__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-vocab-skill"/></svg>
-            </div>
-          </li>
-          <li>
-            <div class="routine-btn create__mode">
-              <svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Function icons -->
-      <div class="footer-block">
-        <h3 class="footer-block__title">Function Icons</h3>
-        <ul class="mob-menu-list">
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-done"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-question"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-minus"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-multiply"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-divide"/></svg></div></li>
-          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-arrow"/></svg></div></li>
-        </ul>
-      </div>
-
-    </div><!-- /footer-container -->
-
-    <!-- Bottom bar -->
-    <div class="footer-bottom">
-      <p class="footer-copy">
-        <span>SkoolTimez</span> · Освітній проєкт · Open source ·
-        <span>2024–2025</span>
-      </p>
-      <p class="footer-copy" style="color:#2a3240;">
-        icon.svg sprite · Unbounded + Geologica · Dark theme
-      </p>
-    </div>
-
-  </div>
+<footer>
+  <p>Самооцінювання навчальної діяльності · Мацала В.В. · Савинська гімназія · 2025–2026</p>
 </footer>
-
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
-<script src="./js/modal.js"></script>
-    <script src="./js/popup.js"></script>
 
 <!-- MODALS -->
 

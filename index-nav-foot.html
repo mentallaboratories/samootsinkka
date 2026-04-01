@@ -370,7 +370,7 @@
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a class="nav__item" href="./it.html">
               <div class="nav__icon">
                 <svg width="48" height="48"><use href="icon.svg#icon-it"/></svg>
@@ -386,9 +386,9 @@
               </div>
               <span class="nav__link--gdisk">./timetable.html</span>
             </a>
-          </li>
+          </li> -->
 
-          <li>
+          <!-- <li>
             <a class="nav__item" href="./guide.html">
               <div class="nav__icon">
                 <svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
@@ -404,13 +404,29 @@
               </div>
               <span class="nav__link--gdisk">./storage.html</span>
             </a>
+          </li> -->
+          <li>
+            <a class="nav__item current" href="state_standart.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./state_standart.html</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav__item current" href="projects.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./projects.html</span>
+            </a>
           </li>
 
         </ul>
       </nav>
 
-      <!-- Hamburger -->
-      <button type="button" class="menu-btn" id="menuOpen">
+      <!-- BUTTON THAT OPENS MOBILE MENU -->
+      <button type="button" class="menu-btn is-hidden" data-popup-open>
         <svg class="rotate180" width="48" height="48">
           <use href="icon.svg#icon-steps"/>
         </svg>
@@ -420,8 +436,8 @@
   </div>
 
   <!-- Mobile modal -->
-  <div class="mob-modal is-hidden" id="mobModal">
-    <button type="button" class="close__button" id="menuClose">
+  <div class="mob-modal is-hidden" data-popup>
+    <button type="button" class="close__button" data-popup-close>
       <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
     </button>
     <ul class="mob-menu__nav">
@@ -429,7 +445,7 @@
         <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
         <a class="mob-menu__link" href="./index.html">./index.html</a>
       </li>
-      <li class="mob-nav__item">
+      <!-- <li class="mob-nav__item">
         <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
         <a class="mob-menu__link" href="./it.html">./it.html</a>
       </li>
@@ -444,6 +460,10 @@
       <li class="mob-nav__item current">
         <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
         <a class="mob-menu__link" href="./storage.html">./storage.html</a>
+      </li> -->
+       <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg></div>
+        <a class="mob-menu__link" href="state_standart.html">./state_standart.html</a>
       </li>
     </ul>
   </div>
@@ -819,5 +839,7 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+<script src="./js/modal.js"></script>
+    <script src="./js/popup.js"></script>
 </body>
 </html>
