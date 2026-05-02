@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RC-проєкт — Мацала В.В.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Raleway:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent-blue: #1a6b8a;
+    --accent-green: #2d7a3e;
+    --accent-brown: #8a3a1a;
+    --gold: #d4a017;
+    --radius: 12px;
+  }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #0a1628 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 1rem;
+  }
+  .header-logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .header-logo span {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .header-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .header-link {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .header-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0a1628 0%, #0d1117 60%);
+    padding: 3rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,160,23,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .hero-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .tab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── PARTS TABLE ── */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--text);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  td[contenteditable="true"] { outline: none; cursor: text; }
+  td[contenteditable="true"]:focus { background: rgba(212,160,23,0.07); border-radius: 4px; }
+  .total-row td {
+    font-weight: 600;
+    background: var(--surface2);
+    color: var(--gold);
+    border-top: 1px solid var(--border);
+  }
+  .del-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .del-btn:hover { color: #e74c3c; }
+  .add-btn {
+    margin-top: 1rem;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .add-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── HATS GRID ── */
+  .hat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .hat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .hat-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .hat-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hat-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .hat-question {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    border-left: 2px solid var(--gold);
+    padding-left: 10px;
+  }
+  .hat-body {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .hat-body li { margin-bottom: 4px; }
+  .hat-body li::before { content: "→ "; color: var(--border); }
+
+  /* ── BLOOM SECTIONS ── */
+  .bloom-section { margin-bottom: 1.75rem; }
+  .bloom-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .bloom-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .bloom-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .bloom-desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    font-style: italic;
+  }
+  .todo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    margin-bottom: 6px;
+    transition: opacity 0.15s;
+  }
+  .todo-item:hover { background: var(--surface2); }
+  .todo-item.done { opacity: 0.45; }
+  .todo-item.done .todo-text { text-decoration: line-through; }
+  .todo-cb {
+    width: 15px; height: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: var(--gold);
+  }
+  .todo-text { flex: 1; font-size: 0.85rem; color: var(--text); }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    margin-left: 4px;
+    letter-spacing: 0.04em;
+  }
+  .tag-hw { background: rgba(26,107,138,0.25); color: #58c4e0; border: 1px solid rgba(26,107,138,0.4); }
+  .tag-sw { background: rgba(45,122,62,0.25); color: #6ce08a; border: 1px solid rgba(45,122,62,0.4); }
+  .tag-mech { background: rgba(138,58,26,0.25); color: #e09c6c; border: 1px solid rgba(138,58,26,0.4); }
+
+  /* ── STATUS SELECT ── */
+  .status-sel {
+    font-size: 0.72rem;
+    font-family: 'Raleway', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    background: var(--surface2);
+    color: var(--text-muted);
+    cursor: pointer;
+    min-width: 148px;
+    transition: border-color 0.2s;
+  }
+  .status-sel:focus { outline: none; border-color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .hat-grid { grid-template-columns: 1fr; }
+    .header-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-logo">
+      RC-проєкт
+      <span>Радіокерована машина · Мацала В.В.</span>
+    </div>
+    <div class="header-links">
+      <a href="index_.html" class="header-link">← Самооцінювання</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Технічний проєкт · Arduino · RF 433MHz</div>
+      <h1 class="hero-title">Радіокерована<br>машина своїми руками</h1>
+      <p class="hero-subtitle">Компоненти · Аналіз за де Боно · План за таксономією Блума</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-num">12</span><div class="stat-label">компонентів</div></div>
+      <div class="stat-card"><span class="stat-num">6</span><div class="stat-label">рівнів Блума</div></div>
+      <div class="stat-card"><span class="stat-num">6</span><div class="stat-label">капелюхів</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('parts')">Parts</button>
+    <button class="tab" onclick="switchTab('about')">About</button>
+    <button class="tab" onclick="switchTab('todo')">To Do</button>
+  </div>
+
+  <!-- PARTS -->
+  <div id="parts" class="panel active">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Компонент</th>
+            <th style="text-align:center">К-сть</th>
+            <th style="text-align:right">Ціна, грн</th>
+            <th style="text-align:right">Сума</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="parts-body"></tbody>
+        <tfoot>
+          <tr class="total-row">
+            <td colspan="4" style="text-align:right">Загалом:</td>
+            <td id="grand-total" style="text-align:right">0 грн</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <button class="add-btn" onclick="addRow()">+ Додати компонент</button>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about" class="panel">
+    <div class="hat-grid" id="hat-grid"></div>
+  </div>
+
+  <!-- TODO -->
+  <div id="todo" class="panel">
+    <div id="todo-container"></div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>RC-проєкт · Радіокерована машина · Мацала В.В. · Савинська гімназія · 2025–2026</p>
+</footer>
+
+<script>
+const partsData=[
+  ["Arduino Nano",2,85],["FS1000A (TX)",1,45],["XY-MK-5V (RX)",1,38],
+  ["Джойстик аналоговий",2,55],["OLED 0.96\" I2C",1,120],["LiPo 7.4V 1000mAh",1,280],
+  ["TP4056 модуль зарядки",1,25],["Серво SG90",2,65],["L298N драйвер мотора",1,90],
+  ["Фанера 3мм (лист)",1,150],["Дроти та роз'єми",1,60],["Гвинти та стійки",1,35]
+];
+
+const hats=[
+  {color:"#888780",label:"Білий капелюх",question:"Які факти, дані та характеристики ми маємо?",items:["Дальність 433MHz: ~50–100м у полі","Arduino Nano: ATmega328P, 5V логіка","LiPo 7.4V потребує балансувального заряду","L298N підтримує 2 мотори до 2A"]},
+  {color:"#BA7517",label:"Жовтий капелюх",question:"Які переваги та позитивні сторони є в цьому рішенні?",items:["Простий протокол RF без прошивки стека","Повний контроль над латентністю","Мала вага шасі з фанери","OLED дає зворотній зв'язок у реальному часі"]},
+  {color:"#D85A30",label:"Чорний капелюх",question:"Які ризики, проблеми та слабкі місця варто врахувати?",items:["Timer1 конфлікт: Servo.h vs millis()","RF без підтвердження — пакети губляться","LiPo без BMS — небезпека перегріву","Немає шифрування — перехоплення сигналу"]},
+  {color:"#639922",label:"Зелений капелюх",question:"Які нові ідеї та альтернативи можна розглянути?",items:["Додати telemetry: RSSI + VBAT на OLED","I2C multiplexer для 2+ OLED","CRC-перевірка пакету на приймачі","Перейти на NRF24L01 для 2-канального зв'язку"]},
+  {color:"#D4537E",label:"Червоний капелюх",question:"Які відчуття та інтуїтивні реакції викликає цей проєкт?",items:["Хвилювання від першого RF-з'єднання","Страх спалити LiPo при налагодженні","Задоволення від плавного руху серво","Нетерплячість — хочеться вже їхати!"]},
+  {color:"#378ADD",label:"Синій капелюх",question:"Як організувати процес і що робити далі?",items:["1. Зібрати схему на макетній платі","2. Написати базовий TX/RX скетч","3. Протестувати джойстик + серво","4. Перенести на фанерне шасі"]}
+];
+
+const bloomLevels=[
+  {name:"1. Запам'ятовування",color:"#B4B2A9",desc:"знаю факти",items:[
+    {text:"Встановити Arduino IDE + бібліотеки",tags:["SW"],status:"did some time ago"},
+    {text:"Вивчити специфікацію FS1000A і XY-MK-5V",tags:["HW"],status:"did some time ago"}
+  ]},
+  {name:"2. Розуміння",color:"#85B7EB",desc:"розумію принцип",items:[
+    {text:"Нарисувати схему підключення",tags:["HW"],status:"had done before started"},
+    {text:"Зрозуміти конфлікт Timer1 (Servo.h vs millis)",tags:["SW"],status:"am doing"}
+  ]},
+  {name:"3. Застосування",color:"#5DCAA5",desc:"виконую задачу",items:[
+    {text:"Підключити TX/RX, перевірити ping",tags:["HW","SW"],status:"am doing"},
+    {text:"Написати TX скетч (джойстик → RF)",tags:["SW"],status:"am going to do"}
+  ]},
+  {name:"4. Аналіз",color:"#EF9F27",desc:"розбираю на частини",items:[
+    {text:"Написати RX скетч (RF → L298N + серво)",tags:["SW"],status:"will do"},
+    {text:"Налагодити OLED: VBAT + RSSI",tags:["SW","HW"],status:"will do"}
+  ]},
+  {name:"5. Синтез / Оцінювання",color:"#D4537E",desc:"поєдную і вдосконалюю",items:[
+    {text:"Вирізати шасі з фанери, зібрати механіку",tags:["Mech"],status:"will do"},
+    {text:"Зібрати силову частину (LiPo + TP4056 + L298N)",tags:["HW"],status:"will do"}
+  ]},
+  {name:"6. Творення",color:"#7F77DD",desc:"створюю нове",items:[
+    {text:"Польовий тест — вимірювання дальності",tags:["HW","Mech"],status:"will do"},
+    {text:"Додати telemetry і CRC-перевірку пакетів",tags:["SW"],status:"will do"}
+  ]}
+];
+
+const statusOptions=["had done before started","did some time ago","do regularly","am doing","am going to do","will do"];
+const tagClass={HW:"tag-hw",SW:"tag-sw",Mech:"tag-mech"};
+
+function renderParts(){
+  const tb=document.getElementById('parts-body');
+  tb.innerHTML='';
+  partsData.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="color:#8b949e">${i+1}</td>
+      <td contenteditable="true" oninput="partsData[${i}][0]=this.textContent">${r[0]}</td>
+      <td contenteditable="true" oninput="partsData[${i}][1]=parseInt(this.textContent)||0;calcTotal()" style="text-align:center">${r[1]}</td>
+      <td contenteditable="true" oninput="partsData[${i}][2]=parseFloat(this.textContent)||0;calcTotal()" style="text-align:right">${r[2]}</td>
+      <td style="text-align:right;color:#8b949e">${(r[1]*r[2]).toFixed(0)} грн</td>
+      <td><button class="del-btn" onclick="removeRow(${i})">×</button></td>`;
+    tb.appendChild(tr);
+  });
+  calcTotal();
+}
+
+function calcTotal(){
+  const t=partsData.reduce((s,r)=>s+r[1]*r[2],0);
+  document.getElementById('grand-total').textContent=t.toFixed(0)+' грн';
+  document.querySelectorAll('#parts-body tr').forEach((tr,i)=>{
+    if(partsData[i]) tr.querySelectorAll('td')[4].textContent=(partsData[i][1]*partsData[i][2]).toFixed(0)+' грн';
+  });
+}
+
+function addRow(){partsData.push(["Новий компонент",1,0]);renderParts();}
+function removeRow(i){partsData.splice(i,1);renderParts();}
+
+function renderHats(){
+  const g=document.getElementById('hat-grid');
+  hats.forEach(h=>{
+    const d=document.createElement('div');
+    d.className='hat';
+    d.innerHTML=`<div class="hat-head"><div class="hat-dot" style="background:${h.color}"></div><span class="hat-title">${h.label}</span></div>
+    <div class="hat-question">${h.question}</div>
+    <ul class="hat-body">${h.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+    g.appendChild(d);
+  });
+}
+
+function renderTodos(){
+  const c=document.getElementById('todo-container');
+  bloomLevels.forEach((level,li)=>{
+    const sec=document.createElement('div');
+    sec.className='bloom-section';
+    sec.innerHTML=`<div class="bloom-label"><div class="bloom-dot" style="background:${level.color}"></div><span class="bloom-name">${level.name}</span><span class="bloom-desc">${level.desc}</span></div>`;
+    level.items.forEach((t,ti)=>{
+      const item=document.createElement('div');
+      const isDone=['had done before started','did some time ago','do regularly'].includes(t.status);
+      item.className='todo-item'+(isDone?' done':'');
+      item.id=`todo-${li}-${ti}`;
+      item.innerHTML=`<input type="checkbox" class="todo-cb" ${isDone?'checked':''} onchange="toggleTodo(${li},${ti},this.checked)">
+        <span class="todo-text">${t.text}</span>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+          ${t.tags.map(tg=>`<span class="tag ${tagClass[tg]}">${tg}</span>`).join('')}
+          <select class="status-sel" onchange="changeStatus(${li},${ti},this.value)">${statusOptions.map(s=>`<option value="${s}"${s===t.status?' selected':''}>${s}</option>`).join('')}</select>
+        </div>`;
+      sec.appendChild(item);
+    });
+    c.appendChild(sec);
+  });
+}
+
+function toggleTodo(li,ti,checked){
+  bloomLevels[li].items[ti].status=checked?'did some time ago':'will do';
+  const item=document.getElementById(`todo-${li}-${ti}`);
+  item.querySelector('select').value=bloomLevels[li].items[ti].status;
+  if(checked) item.classList.add('done'); else item.classList.remove('done');
+}
+
+function changeStatus(li,ti,val){
+  bloomLevels[li].items[ti].status=val;
+  const item=document.getElementById(`todo-${li}-${ti}`);
+  const past=['had done before started','did some time ago','do regularly'];
+  const cb=item.querySelector('input');
+  if(past.includes(val)){item.classList.add('done');cb.checked=true;}
+  else{item.classList.remove('done');cb.checked=false;}
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.tab[onclick="switchTab('${name}')"]`).classList.add('active');
+  document.getElementById(name).classList.add('active');
+}
+
+renderParts(); renderHats(); renderTodos();
+</script>
+</body>
+</html>

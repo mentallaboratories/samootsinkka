@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Template — SkoolTimez</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0d1117; --paper: #f5f2eb; --gold: #c9a84c; --radius: 14px;
+        }
+        body { font-family: 'Geologica', sans-serif; background: var(--paper); color: var(--ink); margin: 0; }
+        .hero { background: var(--ink); color: #fff; padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--gold); }
+        .hero h1 { font-family: 'Unbounded', sans-serif; font-size: 2.5rem; margin: 10px 0; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .section { background: white; padding: 30px; border-radius: var(--radius); margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h2 { font-family: 'Unbounded', sans-serif; color: var(--gold); font-size: 1.2rem; }
+        .lesson-counter-container {
+  max-width: 300px;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.05); /* Легкий фон для темного Hero */
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Використовуємо існуючі змінні кольорів */
+#lessonCounterFill {
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#lessonCounter {
+  color: var(--gold-lt);
+  font-weight: 900;
+}
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="lesson-counter-container">
+  <div class="sidebar-progress">
+    <div class="sp-label">
+      Прогрес курсу <span id="lessonCounter">3 / 36</span>
+    </div>
+    <div class="sp-track">
+      <div class="sp-fill" id="lessonCounterFill" style="width: 8.33%;"></div>
+    </div>
+  </div>
+</div>
+        <p>УРОК № 3</p>
+        <h1>Lorem Ipsum Title</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2>Vocabulary</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+        </section>
+
+        <section class="section">
+            <h2>Grammar</h2>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec non enim in turpis pulvinar facilisis.</p>
+        </section>
+    </main>
+    <script>
+    function initLessonCounter(totalLessons = 36) {
+  const lessonNumElement = document.getElementById('lessonNum');
+  const counterText = document.getElementById('lessonCounter');
+  const counterFill = document.getElementById('lessonCounterFill');
+
+  if (lessonNumElement && counterText && counterFill) {
+    // Витягуємо число з тексту "Урок № 12"
+    const currentLesson = parseInt(lessonNumElement.textContent.replace(/\D/g, '')) || 1;
+    
+    // Оновлюємо текст
+    counterText.textContent = `${currentLesson} / ${totalLessons}`;
+    
+    // Розраховуємо % ширини
+    const percentage = (currentLesson / totalLessons) * 100;
+    counterFill.style.width = percentage + '%';
+  }
+}
+
+// Викликаємо функцію після завантаження сторінки
+window.addEventListener('DOMContentLoaded', () => {
+  initLessonCounter(3); // Вкажіть загальну кількість уроків тут
+});
+</script>
+</body>
+
+</html>
