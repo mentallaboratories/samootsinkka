@@ -983,7 +983,7 @@ body::before {
 
     <!-- meta pills -->
     <div class="lesson-meta-row">
-      <span class="meta-pill num" id="lessonNum">Урок № __</span>
+      <span class="meta-pill num" id="lessonNum">Урок № 2</span>
       <span class="meta-pill date" id="lessonDate">Число __ Місяць _______________Рік ___</span>
       <span class="meta-pill subj">Предмет: Англійська мова</span>
     </div>
@@ -992,30 +992,29 @@ body::before {
     <div class="lesson-title-block">
       <p class="lesson-num-label">Тема уроку</p>
       <h1 class="lesson-name" id="lessonName">
-        <em>Hi, I Am Tom!</em>
+        <em>Evaluating reading skills</em>
       </h1>
       <p class="lesson-topic" id="lessonTopic">
-        Знайомство. Вітання та прощання. Особисті дані.
+       Тема уроку: Розбираємося з правилами та алгоритмами вивчення граматики, а також з тим, як використовувати ці інструменти для покращення навичок читання та письма.
       </p>
     </div>
 
     <!-- aim -->
     <div class="lesson-aim-strip">
-      <span class="aim-label">Мета</span>
-      <p class="aim-text" id="lessonAim" contenteditable="true">
-        Після уроку учень може привітатися, попрощатися та представитися англійською мовою у знайомому контексті. Вживає структури <strong>«Hi, I'm…»</strong>, <strong>«My name is…»</strong>, <strong>«Nice to meet you»</strong>.
+           <p class="aim-text" id="lessonAim" contenteditable="true">
+        Мета уроку: Пояснити функіонал граматичних інструментів <strong>як правила, алгоритми та формули
+        </strong>.
       </p>
     </div>
 
     <!-- tags -->
-    <div class="lesson-tags">
-      <span class="tag">#greetings</span>
-      <span class="tag">#introductions</span>
-      <span class="tag">#personal-info</span>
-      <span class="tag">#A1</span>
-      <span class="tag">#speaking</span>
-      <span class="tag">#dialogue</span>
-      <span class="tag">#vocabulary</span>
+   <div class="lesson-tags">
+      <a style="text-decoration: none;" href="./lesson1vocabulary.html"><span class="tag">#vocabulary</span></a>
+      <a style="text-decoration: none;" href="./lesson2grammar.html"><span class="tag">#grammar</span></a>
+      <a style="text-decoration: none;" href="./lesson3listening.html"><span class="tag">#listening</span></a>
+      <a style="text-decoration: none;" href="./lesson4speaking.html"><span class="tag">#speaking</span></a>
+      <a style="text-decoration: none; background-color: gold;" href="./lesson5reading.html"><span class="tag">#reading</span></a>
+      <a style="text-decoration: none;" href="./lesson6writing.html"><span class="tag">#writing</span></a>
     </div>
 
   </div>
@@ -1080,214 +1079,6 @@ body::before {
   <!-- MAIN CONTENT -->
   <main>
 
-    <!-- ══ 1. СЛОВНИК ══ -->
-    <div class="lesson-section section-vocab" id="vocab">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-icon">📖</div>
-        <div class="section-head-text">
-          <p class="section-label">Словник термінів</p>
-          <p class="section-name">Vocabulary</p>
-        </div>
-        <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="section-body">
-        <div class="vocab-grid">
-
-          <div class="vocab-card">
-            <p class="vocab-term">Hello / Hi</p>
-            <p class="vocab-pos">exclamation · привітання</p>
-            <p class="vocab-def">Стандартне вітання. <em>Hi</em> — неформальне, <em>Hello</em> — нейтральне.</p>
-            <p class="vocab-example">"<em>Hi, I'm Tom!</em>"</p>
-          </div>
-
-          <div class="vocab-card">
-            <p class="vocab-term">Goodbye / Bye</p>
-            <p class="vocab-pos">exclamation · прощання</p>
-            <p class="vocab-def">Прощання з людиною. <em>Bye</em> — скорочена форма для друзів.</p>
-            <p class="vocab-example">"<em>Goodbye, see you tomorrow!</em>"</p>
-          </div>
-
-          <div class="vocab-card">
-            <p class="vocab-term">My name is…</p>
-            <p class="vocab-pos">phrase · представлення</p>
-            <p class="vocab-def">Формула для представлення. Після <em>is</em> — власне ім'я.</p>
-            <p class="vocab-example">"<em>My name is Anna.</em>"</p>
-          </div>
-
-          <div class="vocab-card">
-            <p class="vocab-term">Nice to meet you</p>
-            <p class="vocab-pos">phrase · ввічливість</p>
-            <p class="vocab-def">Говоримо при знайомстві. Відповідь — <em>Nice to meet you too!</em></p>
-            <p class="vocab-example">"<em>Nice to meet you, Tom!</em>"</p>
-          </div>
-
-          <div class="vocab-card">
-            <p class="vocab-term">How are you?</p>
-            <p class="vocab-pos">phrase · запит</p>
-            <p class="vocab-def">Питання про стан. Відповіді: <em>Fine / Great / OK, thank you.</em></p>
-            <p class="vocab-example">"<em>How are you? — I'm fine, thanks!</em>"</p>
-          </div>
-
-          <div class="vocab-card">
-            <p class="vocab-term">I'm from…</p>
-            <p class="vocab-pos">phrase · місце</p>
-            <p class="vocab-def">Розповідь про країну або місто походження.</p>
-            <p class="vocab-example">"<em>I'm from Ukraine.</em>"</p>
-          </div>
-
-          <button class="vocab-add-btn" onclick="addVocabCard()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Додати слово
-          </button>
-
-        </div>
-        <div class="section-complete">
-          <button class="complete-btn" onclick="markDone(this,'vocab')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Виконано
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ 2. ПРАВИЛА ══ -->
-    <div class="lesson-section section-rules" id="rules">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-icon">📐</div>
-        <div class="section-head-text">
-          <p class="section-label">Правила · Алгоритм</p>
-          <p class="section-name">Grammar Rules</p>
-        </div>
-        <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="section-body">
-
-        <ul class="rules-list">
-          <li class="rule-item">
-            <span class="rule-num">1</span>
-            <div class="rule-content">
-              <p class="rule-title">Займенник I — завжди велика літера</p>
-              <p class="rule-desc">В англійській мові займенник першої особи <em>I</em> завжди пишеться з великої літери, навіть у середині речення.</p>
-            </div>
-          </li>
-          <li class="rule-item">
-            <span class="rule-num">2</span>
-            <div class="rule-content">
-              <p class="rule-title">Дієслово to be: am / is / are</p>
-              <p class="rule-desc">З займенником <em>I</em> використовується форма <em>am</em>. З <em>he / she / it</em> — <em>is</em>. З <em>we / you / they</em> — <em>are</em>.</p>
-            </div>
-          </li>
-          <li class="rule-item">
-            <span class="rule-num">3</span>
-            <div class="rule-content">
-              <p class="rule-title">Скорочення: I'm = I am</p>
-              <p class="rule-desc">У розмовній мові <em>I am</em> зазвичай скорочується до <em>I'm</em>. Апостроф позначає пропущену літеру.</p>
-            </div>
-          </li>
-          <li class="rule-item">
-            <span class="rule-num">4</span>
-            <div class="rule-content">
-              <p class="rule-title">Порядок слів у представленні</p>
-              <p class="rule-desc">Стандартна структура: <em>Hi! + I'm / My name is + [ім'я]. + I'm from + [місто/країна].</em></p>
-            </div>
-          </li>
-        </ul>
-
-        <div class="formula-box">
-          Hi! I'm [Name]. I'm [Age]. I'm from [City]. Nice to meet you!
-        </div>
-
-        <div class="section-complete">
-          <button class="complete-btn" onclick="markDone(this,'rules')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Виконано
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ 3. СЛУХАННЯ ══ -->
-    <div class="lesson-section section-listen" id="listen">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-icon">🎧</div>
-        <div class="section-head-text">
-          <p class="section-label">Слухання</p>
-          <p class="section-name">Listening — відео та аудіо</p>
-        </div>
-        <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="section-body">
-        <div class="media-list">
-
-          <!-- VIDEO -->
-          <div class="media-card">
-            <div class="media-card-head">
-              <span class="media-type-badge badge-video">Video</span>
-              <span class="media-title">Hi, I'm Tom! — Introduction Song</span>
-              <span class="media-dur">2:34</span>
-            </div>
-            <div class="media-player">
-              <div class="video-embed" onclick="this.querySelector('.video-caption').textContent='Playing...'">
-                <div class="video-play-btn">
-                  <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                </div>
-                <p class="video-caption">Натисни для відтворення · YouTube</p>
-              </div>
-            </div>
-            <div class="media-tasks">
-              <p class="media-tasks-label">Завдання під час перегляду</p>
-              <ul class="task-list">
-                <li class="task-item">Знайди та запиши всі вітання, які ти почув у відео</li>
-                <li class="task-item">Скільки разів Tom каже "My name is"?</li>
-                <li class="task-item">Звідки Tom? Запиши відповідь англійською</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- AUDIO -->
-          <div class="media-card">
-            <div class="media-card-head">
-              <span class="media-type-badge badge-audio">Audio</span>
-              <span class="media-title">Dialogue: First Day at School</span>
-              <span class="media-dur">1:12</span>
-            </div>
-            <div class="media-player">
-              <div class="audio-player">
-                <button class="play-btn" onclick="togglePlay(this)">
-                  <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-                </button>
-                <div class="audio-track">
-                  <div class="audio-bar"><div class="audio-progress"></div></div>
-                  <p class="audio-time">0:00 / 1:12</p>
-                </div>
-              </div>
-            </div>
-            <div class="media-tasks">
-              <p class="media-tasks-label">Завдання на аудіювання</p>
-              <ul class="task-list">
-                <li class="task-item">Як звати хлопчика і дівчинку в діалозі?</li>
-                <li class="task-item">Яке запитання дівчинка ставить першим?</li>
-                <li class="task-item">Заповни пропуски: "Hi! _____ Anna. _____ are you?" </li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-        <div class="section-complete">
-          <button class="complete-btn" onclick="markDone(this,'listen')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Виконано
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- ══ 4. ЧИТАННЯ ══ -->
     <div class="lesson-section section-read" id="read">
       <div class="section-head" onclick="toggleSection(this)">
@@ -1304,33 +1095,31 @@ body::before {
         <div class="reading-card">
           <div class="reading-card-head">
             <span class="reading-source">Text</span>
-            <span class="reading-title">Tom's Profile Card</span>
+            <span class="reading-title">Читання: Як використовувати oxford dictionary для навчання</span>
           </div>
           <div class="reading-body">
-            <p>
-              My name is <strong>Tom Green</strong>. I am <strong>10</strong> years old.
-              I am from <strong>London</strong>, England. I am a student at Maple Street School.
-            </p>
-            <p>
-              My favourite colour is <em>blue</em>. I like <em>football</em> and <em>computer games</em>.
-              My best friend is Sam. He is 11 years old.
+            
+            <p>The <em>Oxford English Dictionary (OED)</em> is a very famous dictionary. It comes from <em>Oxford University Press</em>. This dictionary shows how the English 
+              language changes over time. Scientists and students use it for their work. The 2005 edition is very big. It has about <em>301,100 articles</em>. 
+              Some people call it <em>"Murray's Dictionary"</em>. This is because <em>James Murray</em> was the first main editor.
             </p>
             <div class="reading-highlight">
-              "Hi! I'm Tom. Nice to meet you! What's your name?"
+              "entry- noun/ˈentri/(plural entries) going in[countable, uncountable] an act of going into or getting into a place. "She made her entry to the sound of thunderous applause."
             </div>
             <p>
-              Tom loves his school. His teacher is <strong>Ms Johnson</strong>.
-              She is very kind and funny. Tom is happy at school.
+              Оpen the <strong>browser</strong>. Type <strong>oxford dictionary</strong> in the search field.
+              Type the word in <strong>text input</strong>, press <strong>button</strong>, listen and repeat 5 times <strong>transcription</strong>, copy the <strong>word, transcription, definition</strong>  
+              into your <strong>vocabulary</strong>, check your pronounciation with the <strong>Google Translate</strong>.
             </p>
           </div>
           <div class="comprehension-qs">
             <p class="cq-label">Запитання до тексту</p>
             <ol class="cq-list">
-              <li class="cq-item">What is his full name?</li>
-              <li class="cq-item">How old is Tom?</li>
-              <li class="cq-item">Where is Tom from?</li>
-              <li class="cq-item">What does Tom like?</li>
-              <li class="cq-item">Who is Tom's best friend?</li>
+              <li class="cq-item">What is OED?</li>
+              <li class="cq-item">Where is it from?</li>
+              <li class="cq-item">What does it show?</li>
+              <li class="cq-item">Whо made it?</li>
+              <li class="cq-item">How many articles are there?</li>
             </ol>
           </div>
         </div>
@@ -1343,209 +1132,7 @@ body::before {
       </div>
     </div>
 
-    <!-- ══ 5. ГОВОРІННЯ ══ -->
-    <div class="lesson-section section-speak" id="speak">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-icon">🗣️</div>
-        <div class="section-head-text">
-          <p class="section-label">Говоріння</p>
-          <p class="section-name">Speaking — питання та відповіді</p>
-        </div>
-        <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="section-body">
-
-        <div class="qa-list">
-
-          <div class="qa-item">
-            <div class="qa-question">
-              <span class="qa-q-badge">Q</span>
-              <p class="qa-q-text">What's your name?</p>
-            </div>
-            <div class="qa-answer">
-              <span class="qa-a-badge">A</span>
-              <p class="qa-a-text">My name is <strong>[Your Name]</strong>. / I'm <strong>[Your Name]</strong>.</p>
-            </div>
-          </div>
-
-          <div class="qa-item">
-            <div class="qa-question">
-              <span class="qa-q-badge">Q</span>
-              <p class="qa-q-text">How old are you?</p>
-            </div>
-            <div class="qa-answer">
-              <span class="qa-a-badge">A</span>
-              <p class="qa-a-text">I am <strong>[Number]</strong> years old.</p>
-            </div>
-          </div>
-
-          <div class="qa-item">
-            <div class="qa-question">
-              <span class="qa-q-badge">Q</span>
-              <p class="qa-q-text">Where are you from?</p>
-            </div>
-            <div class="qa-answer">
-              <span class="qa-a-badge">A</span>
-              <p class="qa-a-text">I'm from <strong>[City / Country]</strong>.</p>
-            </div>
-          </div>
-
-          <div class="qa-item">
-            <div class="qa-question">
-              <span class="qa-q-badge">Q</span>
-              <p class="qa-q-text">How are you?</p>
-            </div>
-            <div class="qa-answer">
-              <span class="qa-a-badge">A</span>
-              <p class="qa-a-text">I'm <strong>fine / great / OK</strong>, thank you! And you?</p>
-            </div>
-          </div>
-
-          <div class="qa-item">
-            <div class="qa-question">
-              <span class="qa-q-badge">Q</span>
-              <p class="qa-q-text">What do you like?</p>
-            </div>
-            <div class="qa-answer">
-              <span class="qa-a-badge">A</span>
-              <p class="qa-a-text">I like <strong>[sport / hobby / food]</strong>.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="dialogue-frame">
-          <p class="dialogue-label">Зразок діалогу · Practice Dialogue</p>
-          <div class="dialogue-line">
-            <span class="dl-speaker">A:</span>
-            <span class="dl-text">Hi! My name is Anna. What's your name?</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">B:</span>
-            <span class="dl-text">Hi! I'm Tom. Nice to meet you, Anna!</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">A:</span>
-            <span class="dl-text">Nice to meet you too! How old are you?</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">B:</span>
-            <span class="dl-text">I'm 10. And you?</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">A:</span>
-            <span class="dl-text">I'm 11. Where are you from, Tom?</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">B:</span>
-            <span class="dl-text">I'm from London. And you?</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">A:</span>
-            <span class="dl-text">I'm from Kyiv, Ukraine. Goodbye, Tom!</span>
-          </div>
-          <div class="dialogue-line">
-            <span class="dl-speaker">B:</span>
-            <span class="dl-text">Bye, Anna! See you tomorrow!</span>
-          </div>
-        </div>
-
-        <div class="section-complete">
-          <button class="complete-btn" onclick="markDone(this,'speak')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Виконано
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ 6. ПИСЬМО ══ -->
-    <div class="lesson-section section-write" id="write">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-icon">✏️</div>
-        <div class="section-head-text">
-          <p class="section-label">Письмо · творча робота</p>
-          <p class="section-name">Writing — My Profile Card</p>
-        </div>
-        <svg class="section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-      <div class="section-body">
-
-        <div class="writing-task">
-          <h2 class="writing-task-title">
-            Творча робота: <span>«My Profile Card»</span>
-          </h2>
-          <p class="writing-task-desc">
-            Створи власну картку-профіль за зразком Тома. Напиши про себе: ім'я, вік, місто, що любиш. Використай вивчені структури та не менше 5 речень.
-          </p>
-          <div class="writing-meta-row">
-            <span class="writing-meta-chip">Мін. 5 речень</span>
-            <span class="writing-meta-chip">Рівень A1</span>
-            <span class="writing-meta-chip">Дедлайн: наступний урок</span>
-            <span class="writing-meta-chip">Формат: письмово</span>
-          </div>
-        </div>
-
-        <div class="writing-steps">
-          <div class="writing-step">
-            <span class="ws-num">1</span>
-            <div class="ws-body">
-              <p class="ws-title">Представлення</p>
-              <p class="ws-hint">Hi! My name is… / I'm… — напиши своє ім'я та прізвище</p>
-            </div>
-          </div>
-          <div class="writing-step">
-            <span class="ws-num">2</span>
-            <div class="ws-body">
-              <p class="ws-title">Вік та місце</p>
-              <p class="ws-hint">I am … years old. I am from … — вік і місто/країна</p>
-            </div>
-          </div>
-          <div class="writing-step">
-            <span class="ws-num">3</span>
-            <div class="ws-body">
-              <p class="ws-title">Навчання</p>
-              <p class="ws-hint">I am a student at … school. My teacher is … — школа і вчитель</p>
-            </div>
-          </div>
-          <div class="writing-step">
-            <span class="ws-num">4</span>
-            <div class="ws-body">
-              <p class="ws-title">Інтереси</p>
-              <p class="ws-hint">I like / I love … — хобі, спорт, улюблений колір чи їжа</p>
-            </div>
-          </div>
-          <div class="writing-step">
-            <span class="ws-num">5</span>
-            <div class="ws-body">
-              <p class="ws-title">Завершення</p>
-              <p class="ws-hint">Nice to meet you! — дружнє завершення картки-профілю</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="writing-area">
-          <div class="writing-area-head">
-            <span class="wa-label">Моя відповідь</span>
-            <span class="wa-wc" id="wordCount">0 слів</span>
-          </div>
-          <textarea class="writing-textarea" id="writingInput"
-            placeholder="Hi! My name is… Start writing your profile card here…"
-            oninput="countWords(this)"></textarea>
-        </div>
-
-        <div class="section-complete">
-          <button class="complete-btn" onclick="markDone(this,'write')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Виконано
-          </button>
-        </div>
-      </div>
-    </div>
+   
 
   </main>
 
