@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEP — Studying TEaching Parenting Self Training Educative Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #0d1117;
+    --paper:    #f5f2eb;
+    --cream:    #ede9df;
+    --gold:     #c9a84c;
+    --gold-lt:  #e8d5a0;
+    --blue:     #1a3a6b;
+    --blue-lt:  #2d5fa8;
+    --teal:     #1a6b5a;
+    --red:      #8b1a1a;
+    --radius:   14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Geologica', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* noise */
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+  }
+
+  /* ── HERO HEADER ── */
+  .site-header {
+    background: linear-gradient(145deg, var(--ink) 0%, #162032 55%, #0d2a1f 100%);
+    padding: clamp(3rem,8vh,5rem) clamp(1.5rem,6vw,5rem) clamp(2.5rem,6vh,4rem);
+    position: relative; overflow: hidden;
+    border-bottom: 3px solid var(--gold);
+  }
+  .site-header::before {
+    content: ''; position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 40px; align-items: center;
+  }
+
+  /* STEP logo */
+  .logo-step {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 900; line-height: 1;
+    color: #fff; letter-spacing: -3px;
+  }
+  .logo-step .s { color: var(--gold); }
+  .logo-tagline {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .62rem; font-weight: 400;
+    color: var(--gold); letter-spacing: .2em;
+    text-transform: uppercase; line-height: 1.8;
+    margin-top: .4rem;
+  }
+
+  .header-intro {
+    font-size: clamp(.85rem, 1.5vw, 1rem);
+    color: #7a8fa8; line-height: 1.75;
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem; font-style: italic;
+  }
+  .header-intro strong { color: #e0ddd6; font-style: normal; }
+
+  @media(max-width:640px){
+    .header-inner { grid-template-columns: 1fr; gap: 20px; }
+    .logo-step { font-size: 4rem; }
+  }
+
+  /* ── ATTENTION BANNER ── */
+  .attention-banner {
+    background: var(--red);
+    padding: 1.2rem clamp(1.5rem,6vw,5rem);
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .attention-banner .warn { font-size: 2rem; flex-shrink: 0; }
+  .attention-banner h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1rem,2.5vw,1.6rem);
+    font-weight: 900; color: #fff; flex: 1;
+    letter-spacing: .05em;
+  }
+  .attention-tag {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .58rem; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    background: var(--gold); color: var(--ink);
+    padding: .45rem 1.1rem; border-radius: 4px; flex-shrink: 0;
+  }
+
+  /* ── CONTAINER & SECTIONS ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.2rem,5vw,4rem); }
+
+  section {
+    padding: clamp(3rem,7vh,5rem) 0;
+    border-bottom: 1px solid var(--cream);
+  }
+  section:nth-child(odd) { background: var(--paper); }
+  section:nth-child(even) { background: #fff; }
+
+  .section-tag {
+    display: inline-block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: .55rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--blue); background: var(--gold-lt);
+    border-radius: 4px; padding: .22rem .6rem; margin-bottom: .9rem;
+  }
+
+  h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2.2rem);
+    font-weight: 900; color: var(--ink);
+    line-height: 1.1; margin-bottom: 1.8rem;
+  }
+  h2 em { font-style: normal; color: var(--blue-lt); }
+
+  /* ── MODES GRID ── */
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 1.2rem; margin-bottom: 2rem;
+  }
+
+  .mode-card {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 2rem 1.6rem;
+    position: relative; overflow: hidden;
+    border-bottom: 4px solid var(--gold);
+    transition: transform .2s, box-shadow .2s;
+    animation: fadeUp .5s ease both;
+  }
+  .mode-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(13,17,23,.25); }
+  .mode-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,.08));
+    pointer-events: none;
+  }
+  .mode-icon { font-size: 2.5rem; margin-bottom: .9rem; display: block; }
+  .mode-card h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .9rem; font-weight: 700;
+    color: var(--gold); margin-bottom: .4rem;
+  }
+  .mode-card p { font-size: .82rem; color: #7a8fa8; }
+
+  /* ── ALGO LIST ── */
+  .algo-list {
+    counter-reset: algo; list-style: none;
+    display: flex; flex-direction: column; gap: 1rem;
+    max-width: 580px;
+  }
+  .algo-list li {
+    counter-increment: algo;
+    display: grid; grid-template-columns: 52px 1fr;
+    gap: 14px; align-items: center;
+  }
+  .algo-list li::before {
+    content: counter(algo);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--gold); opacity: .35;
+    text-align: right; line-height: 1;
+  }
+  .algo-list li span {
+    font-size: .95rem; font-weight: 400;
+    padding: .9rem 1.2rem;
+    background: #fff; border-left: 3px solid transparent;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    transition: border-color .18s, background .18s;
+    cursor: default;
+  }
+  .algo-list li:hover span { border-color: var(--gold); background: #fffbf0; }
+
+  /* ── HOMEWORK COLS ── */
+  .homework-cols {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  @media(max-width:680px){ .homework-cols { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .hw-note {
+    background: var(--ink); border-radius: var(--radius);
+    padding: 2rem; border-left: 4px solid var(--gold);
+  }
+  .hw-note p {
+    font-size: .9rem; line-height: 1.75; color: #a0aab8;
+  }
+  .hw-note p strong { color: var(--gold-lt); }
+
+  /* ── SKILLS 21 ── */
+  .skills21-grid {
+    display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.4rem;
+  }
+
+  .skill-group {
+    background: #fff; border-radius: var(--radius);
+    border: 1.5px solid var(--cream);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(13,17,23,.05);
+    animation: fadeUp .5s ease both;
+  }
+
+  .skill-group-head {
+    padding: .9rem 1.3rem .75rem;
+    border-bottom: 1.5px solid var(--cream);
+  }
+  .skill-group:nth-child(1) .skill-group-head { background:#fdf8e8; border-bottom-color:#e8d070; }
+  .skill-group:nth-child(2) .skill-group-head { background:#eaf5f2; border-bottom-color:#6dcfb8; }
+  .skill-group:nth-child(3) .skill-group-head { background:#fdf0f0; border-bottom-color:#e08080; }
+
+  .skill-group-head h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .65rem; font-weight: 700;
+    color: var(--ink); letter-spacing: .05em;
+  }
+
+  .skill-group ul {
+    list-style: none; padding: .9rem 1.3rem 1.2rem;
+    display: flex; flex-direction: column; gap: .6rem;
+  }
+  .skill-group ul li {
+    font-size: .83rem; line-height: 1.5;
+    padding-left: 1rem; position: relative; color: #4a5568;
+  }
+  .skill-group ul li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-weight: 700;
+  }
+  .skill-group ul li strong { color: var(--ink); font-weight: 600; }
+
+  /* ── COMPETENCES ── */
+  .comp-list { list-style: none; display: flex; flex-direction: column; gap: 1.8rem; }
+
+  .comp-item {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 1.2rem; align-items: start;
+    padding: 1.4rem 1.6rem;
+    background: #fff; border-radius: var(--radius);
+    border: 1.5px solid var(--cream);
+    box-shadow: 0 2px 8px rgba(13,17,23,.04);
+    transition: transform .2s, box-shadow .2s;
+    animation: fadeUp .45s ease both;
+  }
+  .comp-item:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(13,17,23,.09); }
+
+  .comp-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--gold); opacity: .35; line-height: 1;
+    text-align: right;
+  }
+  .comp-body h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    color: var(--ink); margin-bottom: .5rem; line-height: 1.4;
+  }
+  .comp-body p { font-size: .83rem; line-height: 1.7; color: #4a5568; }
+
+  .comp-callouts { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 2rem; }
+  .callout {
+    background: var(--gold-lt);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius);
+    padding: .75rem 1.2rem;
+    font-family: 'Geologica', sans-serif;
+    font-size: .85rem; font-weight: 600; color: var(--ink);
+  }
+
+  /* ── STEPS RIBBON ── */
+  .steps-ribbon {
+    background: var(--ink);
+    border-top: 3px solid var(--gold);
+    padding: clamp(2rem,5vh,3rem) clamp(1.2rem,5vw,4rem);
+  }
+  .steps-ribbon h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .6rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .steps-list {
+    display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; list-style: none;
+  }
+  .steps-list li {
+    font-family: 'Geologica', sans-serif;
+    font-size: .82rem; font-weight: 500; color: #c8d4e0;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .steps-list li::before {
+    content: attr(data-n);
+    background: var(--gold); color: var(--ink);
+    border-radius: 50%; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: .55rem; font-weight: 900; flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: #5a6880;
+    text-align: center; padding: 2rem;
+    font-size: .72rem;
+    font-family: 'Unbounded', sans-serif; letter-spacing: .08em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease,transform .55s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  .mode-card:nth-child(1){animation-delay:.05s}
+  .mode-card:nth-child(2){animation-delay:.12s}
+  .mode-card:nth-child(3){animation-delay:.19s}
+  .skill-group:nth-child(1){animation-delay:.08s}
+  .skill-group:nth-child(2){animation-delay:.16s}
+  .skill-group:nth-child(3){animation-delay:.24s}
+  .comp-item:nth-child(odd){animation-delay:.04s}
+  .comp-item:nth-child(even){animation-delay:.1s}
+
+  /* ── BLOOM TAXONOMY ── */
+
+  /* Header block */
+  .bloom-header {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 1.5rem; align-items: center;
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 1.6rem 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--gold);
+    position: relative; overflow: hidden;
+  }
+  .bloom-header::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,168,76,.08));
+    pointer-events: none;
+  }
+
+  /* Done widget circle */
+  .vidget {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .vidget.remember__mode { background: rgba(108,92,231,.25); border: 2px solid rgba(108,92,231,.5); }
+  .vidget .done {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 3px solid rgba(201,168,76,.6);
+    position: relative;
+  }
+  .vidget .done::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .bloom-header .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(.85rem,1.8vw,1.25rem);
+    font-weight: 900; color: #fff;
+    letter-spacing: .02em; margin-bottom: .4rem;
+  }
+  .bloom-header .section-title.skill-up {
+    background: linear-gradient(90deg, var(--gold), #e8d5a0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .bloom-header .aim {
+    font-family: 'Geologica', sans-serif;
+    font-size: .88rem; font-weight: 500;
+    color: #c8d4e0; margin-bottom: .4rem;
+  }
+  .bloom-header .info {
+    font-size: .78rem; color: #6a7585; line-height: 1.6;
+  }
+
+  /* Bloom routines grid */
+  .bloom-routines {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Bloom column card */
+  .bloom {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1.5px solid var(--cream);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(13,17,23,.05);
+    transition: transform .22s, box-shadow .22s;
+    animation: fadeUp .45s ease both;
+  }
+  .bloom:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(13,17,23,.12);
+  }
+
+  /* Level-specific accent colours */
+  .bloom.remember__mode  { border-top: 3px solid #6c5ce7; }
+  .bloom.understand__mode{ border-top: 3px solid #2d5fa8; }
+  .bloom.apply__mode     { border-top: 3px solid #1a6b5a; }
+  .bloom.analize__mode   { border-top: 3px solid #c9a84c; }
+  .bloom.evaluate__mode  { border-top: 3px solid #c0511a; }
+  .bloom.create__mode    { border-top: 3px solid #8b1a1a; }
+
+  /* Title bar */
+  .routine-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .62rem; font-weight: 900;
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .75rem 1rem .6rem;
+    border-bottom: 1px solid var(--cream);
+  }
+  .remember__mode  .routine-title { background:#f0eeff; color:#6c5ce7; }
+  .understand__mode .routine-title{ background:#edf2fc; color:#2d5fa8; }
+  .apply__mode     .routine-title { background:#eaf5f2; color:#1a6b5a; }
+  .analize__mode   .routine-title { background:#fdf8e8; color:#8a6800; }
+  .evaluate__mode  .routine-title { background:#fdf0e8; color:#c0511a; }
+  .create__mode    .routine-title { background:#fdf0f0; color:#8b1a1a; }
+
+  /* Routine items */
+  .mode-routines {
+    list-style: none;
+    padding: .6rem .8rem .9rem;
+    display: flex; flex-direction: column; gap: .35rem;
+  }
+  .mode-routine {
+    font-family: 'Geologica', sans-serif;
+    font-size: .78rem; font-weight: 400; color: #4a5568;
+    padding: .32rem .7rem;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+    cursor: default;
+  }
+  .bloom.remember__mode  .mode-routine:hover { background:#f0eeff; color:#6c5ce7; }
+  .bloom.understand__mode .mode-routine:hover{ background:#edf2fc; color:#2d5fa8; }
+  .bloom.apply__mode     .mode-routine:hover { background:#eaf5f2; color:#1a6b5a; }
+  .bloom.analize__mode   .mode-routine:hover { background:#fdf8e8; color:#8a6800; }
+  .bloom.evaluate__mode  .mode-routine:hover { background:#fdf0e8; color:#c0511a; }
+  .bloom.create__mode    .mode-routine:hover { background:#fdf0f0; color:#8b1a1a; }
+
+  /* animation stagger */
+  .bloom:nth-child(1){animation-delay:.05s}
+  .bloom:nth-child(2){animation-delay:.11s}
+  .bloom:nth-child(3){animation-delay:.17s}
+  .bloom:nth-child(4){animation-delay:.23s}
+  .bloom:nth-child(5){animation-delay:.29s}
+  .bloom:nth-child(6){animation-delay:.35s}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="./index.html"><span class="accent">Skool</span>Timez</a>
+    <ul class="header-nav">
+      <li><a href="./myprojects.html">Projects</a></li>
+      <li><a href="./lesson.html" class="active">Lesson</a></li>
+      <li><a href="./state_standart.html">Achievements</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ATTENTION BANNER -->
+<div class="attention-banner">
+  <span class="warn">⚠️</span>
+  <h2>10 BASIC SKILLS</h2>
+  <div class="attention-tag">Уважно читати</div>
+</div>
+
+<!-- MODES -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Структура</p>
+    <h2 class="reveal">Три режими <em>роботи</em></h2>
+    <p class="reveal" style="font-size:.92rem;color:#6a7585;margin-bottom:2rem;max-width:560px;line-height:1.7;">
+      Проєкт розрахований на всіх учасників процесу. Є три режими роботи відповідно до статусу. Всі три компоненти однаково важливі.
+    </p>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <span class="mode-icon">📚</span>
+        <h3>Вивчення</h3>
+        <p>Студенти</p>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">🎓</span>
+        <h3>Навчання</h3>
+        <p>Наставники</p>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">👨‍👩‍👧</span>
+        <h3>Батьківство</h3>
+        <p>Родичі</p>
+      </div>
+    </div>
+
+    <p class="section-tag reveal" style="margin-top:2.5rem;">Алгоритм</p>
+    <h2 class="reveal">Крок за кроком — <em>розкривай нове</em></h2>
+    <ul class="algo-list">
+      <li><span>Уважно сприймай інформацію</span></li>
+      <li><span>Підготуйся до роботи ретельно</span></li>
+      <li><span>Виконуй завдання старанно</span></li>
+      <li><span>Поводься дружньо</span></li>
+      <li><span>Плануй точно</span></li>
+      <li><span>Відмічай прогрес постійно</span></li>
+      <li><span>Спитай підказку чемно</span></li>
+      <li><span>Закінчуй проєкти вчасно</span></li>
+      <li><span>Презентуй професійно</span></li>
+      <li><span>Прибирай після себе</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOMEWORK -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Організація</p>
+    <h2 class="reveal">Рутина виконання <em>домашнього завдання</em></h2>
+    <div class="homework-cols">
+      <ul class="algo-list">
+        <li><span>Подивитися розклад</span></li>
+        <li><span>Взяти необхідні підручники</span></li>
+        <li><span>Відкрити на закладці підручник</span></li>
+        <li><span>Виконати домашнє завдання</span></li>
+        <li><span>Здати на перевірку</span></li>
+        <li><span>Проаналізувати помилки</span></li>
+        <li><span>Заповнити журнал досягнення</span></li>
+      </ul>
+      <div class="hw-note">
+        <p>Регулярне виконання домашнього завдання за чітким алгоритмом формує навичку самоорганізації та відповідальності — <strong>ключових компетентностей</strong> сучасного учня.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS 21 -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Розвиток</p>
+    <h2 class="reveal">Навички та вміння <em>21 століття</em></h2>
+    <p class="reveal" style="font-size:.82rem;color:#9aa5b4;margin-bottom:1.8rem;font-style:italic;">
+      Детальніше: <a href="https://novoshkola.com.ua/21st_century_skills1" style="color:var(--blue);">novoshkola.com.ua/21st_century_skills1</a>
+    </p>
+    <div class="skills21-grid">
+      <div class="skill-group">
+        <div class="skill-group-head"><h4>📐 Навчальні та інноваційні навички</h4></div>
+        <ul>
+          <li><strong>Творчість і інноваційність</strong> — дизайнер</li>
+          <li><strong>Критичне мислення</strong> та вміння вирішувати проблеми — інженер</li>
+          <li><strong>Комунікативні навички</strong> та навички співробітництва — бізнесмен</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-head"><h4>💻 Інформація, медіа та комп'ютерні навички</h4></div>
+        <ul>
+          <li><strong>Інформаційна грамотність</strong> — юзер</li>
+          <li><strong>Медіаграмотність</strong> — блогер</li>
+          <li><strong>ІКТ-грамотність</strong> — хакер</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-head"><h4>🌍 Життєві та кар'єрні навички</h4></div>
+        <ul>
+          <li><strong>Гнучкість і пристосовуваність</strong> — розвиток</li>
+          <li><strong>Ініціатива та самоспрямованість</strong> — прогрес</li>
+          <li><strong>Соціальні навички</strong> та навички співіснування різних культур — дипломат</li>
+          <li><strong>Продуктивність та аналіз</strong> кількісних показників — аналітик</li>
+          <li><strong>Лідерство та відповідальність</strong> — президент</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOOM TAXONOMY -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Саморозвиток</p>
+    <h2 class="reveal">Таксономія Блума — <em>рівні навчання</em></h2>
+    <p class="reveal" style="font-size:.88rem;color:#6a7585;max-width:600px;line-height:1.7;margin-bottom:2rem;">
+      Bloom's Taxonomy — набір рівнів когнітивної діяльності для розвитку навичок самостійного навчання. 6 рівнів від простого запам'ятовування до творчого створення.
+    </p>
+
+    <div class="reveal">
+      <div class="bloom-header">
+        <div class="vidget learn remember__mode">
+          <div class="done"></div>
+        </div>
+        <div class="thumb">
+          <h1 class="section-title skill-up">Developing of Self Learning Skills</h1>
+          <h2 class="aim">Learn what is Bloom Taxonomy and how to use it.</h2>
+          <p class="info">Bloom's Taxonomy is a set of exercises divided into 6 layers — from basic recall to complex creation. Each level builds on the previous one.</p>
+        </div>
+      </div>
+
+      <div class="bloom-routines">
+
+        <div class="bloom remember__mode">
+          <h3 class="routine-title">remember</h3>
+          <ul class="mode-routines remember__mode">
+            <li class="mode-routine">copy</li>
+            <li class="mode-routine">find</li>
+            <li class="mode-routine">listen</li>
+            <li class="mode-routine">repeat</li>
+            <li class="mode-routine">search</li>
+            <li class="mode-routine">Google</li>
+            <li class="mode-routine">identify</li>
+          </ul>
+        </div>
+
+        <div class="bloom understand__mode">
+          <h3 class="routine-title">understand</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">compare</li>
+            <li class="mode-routine">contrast</li>
+            <li class="mode-routine">examplify</li>
+            <li class="mode-routine">comment</li>
+            <li class="mode-routine">estimate</li>
+            <li class="mode-routine">extend</li>
+            <li class="mode-routine">paraphrase</li>
+          </ul>
+        </div>
+
+        <div class="bloom apply__mode">
+          <h3 class="routine-title">apply</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">articulate</li>
+            <li class="mode-routine">sketch</li>
+            <li class="mode-routine">choose</li>
+            <li class="mode-routine">execute</li>
+            <li class="mode-routine">examine</li>
+            <li class="mode-routine">implement</li>
+            <li class="mode-routine">experiment</li>
+          </ul>
+        </div>
+
+        <div class="bloom analize__mode">
+          <h3 class="routine-title">analize</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">calculate</li>
+            <li class="mode-routine">categorize</li>
+            <li class="mode-routine">estimate</li>
+            <li class="mode-routine">question</li>
+            <li class="mode-routine">explain</li>
+            <li class="mode-routine">integrate</li>
+            <li class="mode-routine">distinguish</li>
+          </ul>
+        </div>
+
+        <div class="bloom evaluate__mode">
+          <h3 class="routine-title">evaluate</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">test</li>
+            <li class="mode-routine">debate</li>
+            <li class="mode-routine">comment</li>
+            <li class="mode-routine">reflect</li>
+            <li class="mode-routine">predict</li>
+            <li class="mode-routine">edit</li>
+            <li class="mode-routine">review</li>
+          </ul>
+        </div>
+
+        <div class="bloom create__mode">
+          <h3 class="routine-title">create</h3>
+          <ul class="mode-routines">
+            <li class="mode-routine">blog</li>
+            <li class="mode-routine">build</li>
+            <li class="mode-routine">write</li>
+            <li class="mode-routine">collaborate</li>
+            <li class="mode-routine">podcast</li>
+            <li class="mode-routine">film</li>
+            <li class="mode-routine">programme</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 COMPETENCES -->
+<section>
+  <div class="container">
+    <p class="section-tag reveal">Державний стандарт</p>
+    <h2 class="reveal">10 ключових компетентностей <em>нової української школи</em></h2>
+    <div class="comp-callouts reveal" style="max-width:460px; margin-bottom:2.5rem;">
+      <div class="callout">🤝 Вміння спілкуватися з людьми в колективі</div>
+      <div class="callout">🌐 Навички іншомовного спілкування</div>
+    </div>
+    <ul class="comp-list">
+      <li class="comp-item"><div class="comp-num">1</div><div class="comp-body"><h3>Спілкування державною (і рідною у разі відмінності) мовами</h3><p>Уміння усно і письмово висловлювати й тлумачити поняття, думки, почуття, факти та погляди через слухання, говоріння, читання, письмо, застосування мультимедійних засобів.</p></div></li>
+      <li class="comp-item"><div class="comp-num">2</div><div class="comp-body"><h3>Спілкування іноземними мовами</h3><p>Уміння належно розуміти висловлене іноземною мовою, усно і письмово висловлювати й тлумачити поняття, думки, почуття, факти та погляди в широкому діапазоні соціальних і культурних контекстів.</p></div></li>
+      <li class="comp-item"><div class="comp-num">3</div><div class="comp-body"><h3>Математична грамотність</h3><p>Уміння застосовувати математичні (числові та геометричні) методи для вирішення прикладних завдань у різних сферах діяльності. Здатність до розуміння і використання простих математичних моделей.</p></div></li>
+      <li class="comp-item"><div class="comp-num">4</div><div class="comp-body"><h3>Компетентності в природничих науках і технологіях</h3><p>Наукове розуміння природи і сучасних технологій, а також здатність застосовувати його в практичній діяльності. Уміння застосовувати науковий метод, спостерігати, аналізувати, формулювати гіпотези.</p></div></li>
+      <li class="comp-item"><div class="comp-num">5</div><div class="comp-body"><h3>Інформаційно-цифрова компетентність</h3><p>Впевнене, а водночас критичне застосування ІКТ для створення, пошуку, обробки, обміну інформацією. Інформаційна й медіаграмотність, основи програмування, алгоритмічне мислення, кібербезпека.</p></div></li>
+      <li class="comp-item"><div class="comp-num">6</div><div class="comp-body"><h3>Уміння навчатися впродовж життя</h3><p>Здатність до пошуку та засвоєння нових знань, набуття нових умінь і навичок, організації навчального процесу, уміння визначати навчальні цілі та способи їх досягнення.</p></div></li>
+      <li class="comp-item"><div class="comp-num">7</div><div class="comp-body"><h3>Ініціативність і підприємливість</h3><p>Уміння генерувати нові ідеї та втілювати їх у власній діяльності. Здатність діяти проактивно, у тому числі в колективних проєктах.</p></div></li>
+      <li class="comp-item"><div class="comp-num">8</div><div class="comp-body"><h3>Соціальна та громадянська компетентності</h3><p>Уміння ефективно співпрацювати з іншими людьми. Усвідомлення цінностей демократичного суспільства, прав і обов'язків громадянина.</p></div></li>
+      <li class="comp-item"><div class="comp-num">9</div><div class="comp-body"><h3>Обізнаність і самовираження у сфері культури</h3><p>Здатність розуміти та поважати культурні прояви і висловлювати свої ідеї та почуття через різноманітні засоби.</p></div></li>
+      <li class="comp-item"><div class="comp-num">10</div><div class="comp-body"><h3>Екологічна грамотність і здорове життя</h3><p>Розуміння взаємозв'язку організму людини з природнім і соціальним оточенням. Уміння оцінити ризики і приймати відповідальні рішення у сфері здоров'я та довкілля.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- STEPS RIBBON -->
+<div class="steps-ribbon">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h3>Кроки навчального алгоритму STEP</h3>
+    <ul class="steps-list">
+      <li data-n="1">Уважно сприймай інформацію</li>
+      <li data-n="2">Підготуйся ретельно</li>
+      <li data-n="3">Виконуй старанно</li>
+      <li data-n="4">Поводься дружньо</li>
+      <li data-n="5">Плануй точно</li>
+      <li data-n="6">Відмічай прогрес</li>
+      <li data-n="7">Спитай підказку чемно</li>
+      <li data-n="8">Закінчуй вчасно</li>
+      <li data-n="9">Презентуй професійно</li>
+      <li data-n="10">Прибирай після себе</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  STEP — Studying TEaching Parenting Self Training Educative Project &nbsp;|&nbsp;
+  <a href="https://novoshkola.com.ua/21st_century_skills1">novoshkola.com.ua</a>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
