@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESP32Lab</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* HEADER */
+header {
+  background: #1e293b;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu-btn {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* POPUP MENU */
+.popup {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background: #334155;
+  color: white;
+  transition: 0.3s;
+  padding: 20px;
+}
+
+.popup.active {
+  right: 0;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup ul {
+  list-style: none;
+  padding: 0;
+}
+
+.popup li {
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #475569;
+}
+
+/* MAIN */
+main {
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* IMAGE PLACE */
+.image-placeholder {
+  width: 100%;
+  height: 200px;
+  background: #cbd5f5;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* BUTTONS */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background: #1d4ed8;
+}
+
+/* CONTENT AREA */
+.tab-content {
+  margin-top: 15px;
+  padding: 15px;
+  background: #e2e8f0;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ESP32Lab</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- POPUP MENU -->
+<div class="popup" id="menu">
+  <h3>Лабораторії</h3>
+  <ul>
+    <li onclick="selectLab('Оптика')">Оптика</li>
+    <li onclick="selectLab('Електрика')">Електрика</li>
+    <li onclick="selectLab('Магнетизм')">Магнетизм</li>
+    <li onclick="selectLab('Кінематика')">Кінематика</li>
+    <li onclick="selectLab('Теоретична')">Теоретична</li>
+    <li onclick="selectLab('Термодинаміка')">Термодинаміка</li>
+  </ul>
+</div>
+
+<main>
+  <div class="card">
+    <h2 id="lab-title">Головний розділ</h2>
+
+    <div class="image-placeholder"></div>
+
+    <p id="lab-description">
+      Оберіть лабораторію в меню для перегляду інформації.
+    </p>
+
+    <div class="buttons">
+      <button onclick="showTab('Знання')">Знання</button>
+      <button onclick="showTab('Розуміння')">Розуміння</button>
+      <button onclick="showTab('Практика')">Практика</button>
+      <button onclick="showTab('Аналіз')">Аналіз</button>
+      <button onclick="showTab('Оцінювання')">Оцінювання</button>
+      <button onclick="showTab('Проєкти')">Проєкти</button>
+    </div>
+
+    <div class="tab-content" id="content">
+      Тут буде контент вкладок.
+    </div>
+  </div>
+</main>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+
+function selectLab(lab) {
+  document.getElementById("lab-title").innerText = lab;
+  document.getElementById("lab-description").innerText =
+    "Це розділ лабораторії: " + lab + ". Тут будуть експерименти та матеріали.";
+  
+  toggleMenu();
+}
+
+function showTab(tab) {
+  let content = "";
+
+  switch(tab) {
+    case "Знання":
+      content = "Теорія, визначення та формули.";
+      break;
+    case "Розуміння":
+      content = "Пояснення явищ простими словами.";
+      break;
+    case "Практика":
+      content = "Лабораторні роботи та експерименти.";
+      break;
+    case "Аналіз":
+      content = "Порівняння, графіки та дослідження.";
+      break;
+    case "Оцінювання":
+      content = "Тести та перевірка знань.";
+      break;
+    case "Проєкти":
+      content = "Проєктні роботи та дослідження.";
+      break;
+  }
+
+  document.getElementById("content").innerText = content;
+}
+</script>
+
+</body>
+</html>

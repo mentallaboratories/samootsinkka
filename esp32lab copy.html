@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESP32Lab · SkoolTimez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="main.css">
+
+<style>
+/* ── СТИЛІЗАЦІЯ ЛАБОРАТОРІЇ ПІД ДИЗАЙН СHROME / 404 ── */
+body {
+  background-color: #0b0f17; /* Темний бекграунд з оригінального дизайну */
+  color: #ffffff;
+  font-family: 'Geologica', sans-serif;
+}
+
+main {
+  padding: 60px 0;
+}
+
+/* Стилі картки лабораторії */
+.lab-card {
+  background: #131924;
+  border: 1px solid #1e2633;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.lab-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.lab-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #a0aec0;
+  margin-bottom: 30px;
+}
+
+/* Заповнювач для медіа / схем */
+.image-placeholder {
+  width: 100%;
+  height: 250px;
+  background: #1a2333;
+  border: 2px dashed #2d3748;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Сітка кнопок вкладок (Таксономія Блума) */
+.tab-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 12px;
+  border: 1px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Контентна область вкладок */
+.tab-content {
+  background: #1a2230;
+  border-left: 4px solid #2563eb;
+  padding: 24px;
+  border-radius: 0 12px 12px 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  min-height: 100px;
+}
+
+/* Додаткове випадаюче меню лабораторій збоку (замість стандартного popup) */
+.popup-labs {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: #131924;
+  border-left: 1px solid #1e2633;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+  transition: 0.3s ease;
+  padding: 30px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.popup-labs.active {
+  right: 0;
+}
+
+.popup-labs h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e2633;
+}
+
+.popup-labs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup-labs li {
+  padding: 14px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+  color: #cbd5e1;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.popup-labs li:hover {
+  background: #1a2230;
+  color: #ffffff;
+}
+
+.close-labs-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header__container">
+
+      <a class="logo home" href="./index.html">
+        <span class="accent">Skool</span>Timez
+      </a>
+
+      <nav class="header__nav">
+        <ul class="nav">
+          <li>
+            <a class="nav__item" href="./index.html">
+              <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
+              <span class="nav__link--gdisk">./index.html</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav__item current" href="./it.html">
+              <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
+              <span class="nav__link--gdisk">./esp32lab.html</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav__item" href="./timetable.html">
+              <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
+              <span class="nav__link--gdisk">./timetable.html</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav__item" href="./guide.html">
+              <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
+              <span class="nav__link--gdisk">./guide.html</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav__item" href="./storage.html">
+              <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
+              <span class="nav__link--gdisk">./storage.html</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" class="menu-btn" id="menuOpen" onclick="toggleMenu()">
+        <svg class="rotate180" width="48" height="48">
+          <use href="icon.svg#icon-steps"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="mob-modal is-hidden" id="mobModal">
+    <button type="button" class="close__button" id="menuClose">
+      <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
+    </button>
+    <ul class="mob-menu__nav">
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
+        <a class="mob-menu__link" href="./index.html">./index.html</a>
+      </li>
+      <li class="mob-nav__item current">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
+        <a class="mob-menu__link" href="./it.html">./esp32lab.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
+        <a class="mob-menu__link" href="./timetable.html">./timetable.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
+        <a class="mob-menu__link" href="./guide.html">./guide.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
+        <a class="mob-menu__link" href="./storage.html">./storage.html</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+
+<div class="popup-labs" id="menu">
+  <button class="close-labs-btn" onclick="toggleMenu()">×</button>
+  <h3>Лабораторії</h3>
+  <ul>
+    <li onclick="selectLab('Оптика')">Оптика</li>
+    <li onclick="selectLab('Електрика')">Електрика</li>
+    <li onclick="selectLab('Магнетизм')">Магнетизм</li>
+    <li onclick="selectLab('Кінематика')">Кінематика</li>
+    <li onclick="selectLab('Теоретична')">Теоретична physics</li>
+    <li onclick="selectLab('Термодинаміка')">Термодинаміка</li>
+  </ul>
+</div>
+
+
+<main>
+  <div class="container">
+    <div class="lab-card">
+      <h1 class="lab-title" id="lab-title">Головний розділ</h1>
+
+      <div class="image-placeholder">
+        <span>[ Інтерактивне середовище / Схема підключення ESP32 ]</span>
+      </div>
+
+      <p class="lab-desc" id="lab-description">
+        Оберіть потрібну фізичну лабораторію у правому верхньому меню для старту експериментів та перегляду методичних матеріалів.
+      </p>
+
+      <div class="tab-buttons">
+        <button class="tab-btn" onclick="showTab('Знання', this)">Знання</button>
+        <button class="tab-btn" onclick="showTab('Розуміння', this)">Розуміння</button>
+        <button class="tab-btn" onclick="showTab('Практика', this)">Практика</button>
+        <button class="tab-btn" onclick="showTab('Аналіз', this)">Аналіз</button>
+        <button class="tab-btn" onclick="showTab('Оцінювання', this)">Оцінювання</button>
+        <button class="tab-btn" onclick="showTab('Проєкти', this)">Проєкти</button>
+      </div>
+
+      <div class="tab-content" id="content">
+        Тут відображатиметься контент обраної вкладки.
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-container">
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">School Timetable. Subjects</h3>
+        <ul class="skills__list">
+          <li><div class="set-btn"><svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-ukr-fl"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-physics"/></svg></div></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">Learning skill levels (Bloom taxonomy)</h3>
+        <ul class="mob-menu-list">
+          <li><div class="set-btn"><svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div></li>
+          <li><div class="routine-btn remember__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-head"/></svg></div></li>
+          <li><div class="routine-btn understand__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg></div></li>
+          <li><div class="routine-btn apply__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-steps"/></svg></div></li>
+          <li><div class="routine-btn analize__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-planning"/></svg></div></li>
+          <li><div class="routine-btn evaluate__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-estimate"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg></div></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">IT skills and tools</h3>
+        <ul class="skills__list">
+          <li><div class="set-btn"><svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-it"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-input"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-processing"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-output"/></svg></div></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">Planning. Time management</h3>
+        <ul class="mob-menu-list">
+          <li><div class="time-btn"><svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-clock"/></svg></div></li>
+          <li><div class="time-btn"><svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-second"/></svg></div></li>
+          <li><div class="time-btn"><svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-calendar"/></svg></div></li>
+          <li><div class="time-btn"><svg class="time-icon" width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">Language skills</h3>
+        <ul class="mob-menu-list">
+          <li><div class="set-btn"><svg class="set-icon" width="48" height="48"><use href="icon.svg#icon-british-fl"/></svg></div></li>
+          <li><div class="routine-btn remember__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-listening-skill"/></svg></div></li>
+          <li><div class="routine-btn understand__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-reading-skill"/></svg></div></li>
+          <li><div class="routine-btn apply__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-speaking-skill"/></svg></div></li>
+          <li><div class="routine-btn analize__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-writing-skill"/></svg></div></li>
+          <li><div class="routine-btn evaluate__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-vocab-skill"/></svg></div></li>
+          <li><div class="routine-btn create__mode"><svg class="routine-icon" width="48" height="48"><use href="icon.svg#icon-gears"/></svg></div></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-block__title">Function Icons</h3>
+        <ul class="mob-menu-list">
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-done"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-exlamation"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-question"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-minus"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-multiply"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-divide"/></svg></div></li>
+          <li><div class="symbols"><svg class="symbol-icon" width="48" height="48"><use href="icon.svg#icon-arrow"/></svg></div></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        <span>SkoolTimez</span> · Освітній проєкт · Open source ·
+        <span>2024–2025</span>
+      </p>
+      <p class="footer-copy" style="color:#2a3240;">
+        icon.svg sprite · Unbounded + Geologica · Dark theme
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  /* ── Керування бічним меню лабораторій ── */
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+  }
+
+  function selectLab(lab) {
+    document.getElementById("lab-title").innerText = lab;
+    document.getElementById("lab-description").innerText =
+      "Це інтерактивний розділ лабораторії: " + lab + ". Виберіть рівень дослідження нижче для роботи з ESP32 мікроконтролерами.";
+    toggleMenu();
+  }
+
+  /* ── Перемикання вкладок ── */
+  function showTab(tab, buttonElement) {
+    // Прибираємо активний клас з усіх кнопок
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Додаємо активний клас поточній кнопці
+    if(buttonElement) buttonElement.classList.add('active');
+
+    let content = "";
+    switch(tab) {
+      case "Знання":
+        content = "<strong>Знання:</strong> Теоретичні відомості, базові закони фізики, формули та технічні специфікації ESP32.";
+        break;
+      case "Розуміння":
+        content = "<strong>Розуміння:</strong> Детальне розшифрування фізичних процесів, принципи роботи датчиків простішими словами.";
+        break;
+      case "Практика":
+        content = "<strong>Практика:</strong> Крок за кроком керівництво до лабораторної роботи, схеми підключень на макетній платі.";
+        break;
+      case "Аналіз":
+        content = "<strong>Аналіз:</strong> Порівняння отриманих даних, побудова графіків залежностей, аналіз похибок вимірювання.";
+        break;
+      case "Оцінювання":
+        content = "<strong>Оцінювання:</strong> Контрольні запитання, тестові завдання для самоперевірки та критерії захисту роботи.";
+        break;
+      case "Проєкти":
+        content = "<strong>Проєкти:</strong> Творчі інженерні завдання, ідеї для автоматизації (IoT) та створення власних пристроїв.";
+        break;
+    }
+
+    document.getElementById("content").innerHTML = content;
+  }
+
+  /* ── Мобільне меню навігації сайту (бургер для маленьких екранів) ── */
+  const modal    = document.getElementById('mobModal');
+  const openBtn  = document.getElementById('menuOpen');
+  const closeBtn = document.getElementById('menuClose');
+
+  // Оскільки у нас menuOpen тепер відкриває список лабораторій, мобілка налаштовується автоматично через медіа-запити в main.css
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      modal.classList.add('is-hidden');
+      document.getElementById("menu").classList.remove("active");
+    }
+  });
+</script>
+</body>
+</html>
