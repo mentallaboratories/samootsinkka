@@ -6,7 +6,7 @@
 <title>Lesson — SkoolTimez</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<!-- <style>
 
 /* ═══════════════════════════════════════════
    TOKENS
@@ -65,6 +65,43 @@ body::before {
   grid-template-columns: 260px 1fr;
   gap: 2rem;
   padding: 2rem 0 5rem;
+}
+.tab-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 12px;
+  border: 1px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Контентна область вкладок */
+.tab-content {
+  background: #1a2230;
+  border-left: 4px solid #2563eb;
+  padding: 24px;
+  border-radius: 0 12px 12px 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  min-height: 100px;
 }
 
 @media (max-width: 860px) {
@@ -957,7 +994,8 @@ body::before {
   .lesson-meta-row{ gap: .4rem; }
 }
 
-</style>
+</style> -->
+<link rel="stylesheet" href="./main.css">
 </head>
 <body>
 
@@ -980,6 +1018,18 @@ body::before {
 ══════════════════════════════════════════ -->
 <div class="lesson-hero">
   <div class="container">
+
+      <div class="tab-buttons">
+        <button class="tab-btn" onclick="showTab('Знання', this)">Знання</button>
+        <button class="tab-btn" onclick="showTab('Розуміння', this)">Розуміння</button>
+        <button class="tab-btn" onclick="showTab('Практика', this)">Практика</button>
+        <button class="tab-btn" onclick="showTab('Аналіз', this)">Аналіз</button>
+        <button class="tab-btn" onclick="showTab('Оцінювання', this)">Оцінювання</button>
+        <button class="tab-btn" onclick="showTab('Проєкти', this)">Проєкти</button>
+      </div>
+<div class="tab-content" id="content">
+      Тут буде контент вкладок.
+    </div>
 
     <!-- meta pills -->
     <div class="lesson-meta-row">
@@ -1007,10 +1057,11 @@ body::before {
       </p>
     </div>
 <div style="width: 100%; text-align: center;">
-                <img src="images/brain.png" alt="паперові флешкартки" style="max-width: 400px; height: auto; border-radius: 5px;">
+                <img src="./images/layout/ESL.png" alt="паперові флешкартки" style="max-width: 400px; height: auto; border-radius: 5px;">
             </div>
     <!-- tags -->
     <div class="lesson-tags">
+      <p class="aim-text">ESL теги:</p>
       <a href="./lesson1vocabulary.html"><span class="tag">#vocabulary</span></a>
       <a href="./lesson2grammar.html"><span class="tag">#grammar</span></a>
       <a href="./lesson3listening.html"><span class="tag">#listening</span></a>
@@ -1461,6 +1512,32 @@ function markDone(btn, id) {
     : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Виконано`;
   updateProgress();
   updateTocActive();
+}
+function showTab(tab) {
+  let content = "";
+
+  switch(tab) {
+    case "Знання":
+      content = "Теорія, визначення та формули.";
+      break;
+    case "Розуміння":
+      content = "Пояснення явищ простими словами.";
+      break;
+    case "Практика":
+      content = "Лабораторні роботи та експерименти.";
+      break;
+    case "Аналіз":
+      content = "Порівняння, графіки та дослідження.";
+      break;
+    case "Оцінювання":
+      content = "Тести та перевірка знань.";
+      break;
+    case "Проєкти":
+      content = "Проєктні роботи та дослідження.";
+      break;
+  }
+
+  document.getElementById("content").innerText = content;
 }
 
 function updateProgress() {
