@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор Шпаргалки Excel</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; margin: 0; }
+        button { padding: 15px 30px; font-size: 18px; font-weight: bold; color: #fff; background-color: #217346; border: none; border-radius: 5px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.2s; }
+        button:hover { background-color: #1a5c38; }
+    </style>
+</head>
+<body>
+
+<button onclick="generateExcel()">Завантажити шпаргалку в Excel (.xlsx)</button>
+
+<script>
+function generateExcel() {
+    // 1. Дані для вкладки HTML
+    const htmlData = [
+        ["Елемент / Тег", "Опис", "Приклад використання"],
+        ["<!DOCTYPE html>", "Оголошення типу документа, вказує браузеру, що це HTML5.", "<!DOCTYPE html>"],
+        ["<html>", "Корневий елемент, який містить усю сторінку.", "<html lang=\"uk\">...</html>"],
+        ["<head>", "Мета-інформація про сторінку (назва, кодування, лінки на CSS).", "<head><title>Мій сайт</title></head>"],
+        ["<body>", "Основний вміст сторінки, який бачить користувач.", "<body><h1>Привіт!</h1></body>"],
+        ["<h1> – <h6>", "Заголовки різних рівнів (<h1> — найважливіший).", "<h1>Головний заголовок</h1>"],
+        ["<p>", "Абзац тексту.", "<p>Це текст параграфа.</p>"],
+        ["<a>", "Гіперпосилання (тег href вказує адресу).", "<a href=\"https://google.com\">Google</a>"],
+        ["<img>", "Вставка зображення (src — шлях, alt — опис).", "<img src=\"logo.png\" alt=\"Логотип\">"],
+        ["<div>", "Блочний елемент для групування інших елементів (контейнер).", "<div><p>Текст всередині блоку</p></div>"],
+        ["<span>", "Рядковий елемент для стилізації окремої частини тексту.", "Це <span style=\"color:red;\">важливо</span>."],
+        ["<ul> / <ol> / <li>", "Списки: маркований (<ul>), нумерований (<ol>) та елемент списку (<li>).", "<ul><li>Перший пункт</li></ul>"]
+    ];
+
+    // 2. Дані для вкладки CSS
+    const cssData = [
+        ["Поняття / Властивість", "Опис", "Приклад синтаксису"],
+        ["Селектори", "Вказують, до яких HTML-елементів застосувати стилі.", "p { ... } , .class { ... } , #id { ... }"],
+        ["color", "Колір тексту.", "color: #333333;"],
+        ["background-color", "Колір коду/фону елемента.", "background-color: #f4f4f4;"],
+        ["font-size", "Розмір шрифту.", "font-size: 16px;"],
+        ["font-family", "Сімейство шрифтів (шрифт тексту).", "font-family: Arial, sans-serif;"],
+        ["margin", "Зовнішні відступи від меж елемента до сусідніх об'єктів.", "margin: 20px;"],
+        ["padding", "Внутрішні відступи від вмісту елемента до його межі.", "padding: 10px 15px;"],
+        ["border", "Рамка навколо елемента (товщина, тип лінії, колір).", "border: 1px solid black;"],
+        ["width / height", "Ширина та висота елемента.", "width: 100%; height: auto;"],
+        ["display", "Визначає поведінку відображення (блок, рядок, флекс тощо).", "display: flex;"],
+        ["position", "Метод позиціонування елемента на сторінці.", "position: absolute; top: 0;"]
+    ];
+
+    // 3. Дані для вкладки JS
+    const jsData = [
+        ["Поняття / Конструкція", "Опис", "Приклад коду"],
+        ["Змінні (let, const)", "Контейнери для зберігання даних. const — незмінна, let — можна змінювати.", "let count = 5; const name = \"Олег\";"],
+        ["Типи даних", "Основні типи: String, Number, Boolean, Object, Array.", "let isAdmin = true;"],
+        ["Функції (function)", "Блок коду, який можна викликати повторно.", "function greet() { return \"Привіт!\"; }"],
+        ["Стрілочні функції", "Скорочений синтаксис написання функцій в ES6+.", "const add = (a, b) => a + b;"],
+        ["Умовні оператори", "Конструкція if / else для виконання коду за певної умови.", "if (x > 0) { console.log(\"Плюс\"); }"],
+        ["Цикли (for, while)", "Повторення певної дії кілька разів.", "for (let i = 0; i < 5; i++) { ... }"],
+        ["Масиви (Array)", "Список впорядкованих значень.", "let colors = [\"red\", \"green\", \"blue\"];"],
+        ["Об'єкти (Object)", "Структура даних у форматі \"ключ: значення\".", "let user = { name: \"Іван\", age: 25 };"],
+        ["DOM-маніпуляції", "Пошук та зміна HTML-елементів через скрипт.", "document.getElementById(\"btn\").innerText = \"Клік!\";"],
+        ["Події (addEventListener)", "Відстеження дій користувача (клік, натискання клавіш).", "element.addEventListener(\"click\", () => {});"],
+        ["Консоль (console.log)", "Виведення інформації в консоль браузера для відладки.", "console.log(\"Працює!\");"]
+    ];
+
+    // Створення книги Excel
+    const wb = XLSX.utils.book_new();
+
+    // Перетворення масивів у робочі листи
+    const wsHtml = XLSX.utils.aoa_to_sheet(htmlData);
+    const wsCss = XLSX.utils.aoa_to_sheet(cssData);
+    const wsJs = XLSX.utils.aoa_to_sheet(jsData);
+
+    // Додавання листів до книги
+    XLSX.utils.book_append_sheet(wb, wsHtml, "HTML");
+    XLSX.utils.book_append_sheet(wb, wsCss, "CSS");
+    XLSX.utils.book_append_sheet(wb, wsJs, "JavaScript");
+
+    // Експорт файлу
+    XLSX.writeFile(wb, "Web_Development_CheatSheet.xlsx");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Іноземна мова 5–9 класи — Модельна навчальна програма</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --navy:   #1a2744;
+    --blue:   #2563eb;
+    --sky:    #dbeafe;
+    --teal:   #0d9488;
+    --amber:  #f59e0b;
+    --rose:   #e11d48;
+    --slate:  #64748b;
+    --surface:#f8fafc;
+    --white:  #ffffff;
+    --border: #e2e8f0;
+    --text:   #1e293b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a7c 60%, #0d4f8c 100%);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(13,148,136,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 80% 20%, rgba(245,158,11,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ministry-label {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 4vw, 40px);
+    color: var(--white);
+    line-height: 1.15;
+    max-width: 760px;
+    margin: 0 auto 10px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 6px;
+  }
+  .hero-decree {
+    display: inline-block;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 11px;
+    color: rgba(255,255,255,.55);
+    margin-top: 10px;
+  }
+
+  /* ── GRADE SELECTOR ── */
+  .selector-wrap {
+    padding: 36px 24px 20px;
+    text-align: center;
+  }
+  .selector-label {
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 18px;
+  }
+  .grade-cards {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .grade-card {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    background: var(--white);
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+  .grade-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-color, var(--blue));
+    opacity: 0;
+    transition: opacity .18s;
+    border-radius: 14px;
+  }
+  .grade-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  .grade-card.active {
+    border-color: var(--card-color, var(--blue));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-color, var(--blue)) 25%, transparent);
+  }
+  .grade-card.active::after { opacity: .07; }
+  .grade-number {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--card-color, var(--blue));
+    position: relative;
+    z-index: 1;
+    transition: color .18s;
+  }
+  .grade-card.active .grade-number { color: var(--card-color, var(--blue)); }
+  .grade-label {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .grade-cefr {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    background: var(--card-color, var(--blue));
+    color: #fff;
+    border-radius: 6px;
+    padding: 2px 7px;
+    margin-top: 5px;
+    position: relative;
+    z-index: 1;
+    opacity: .85;
+  }
+
+  /* ── CONTENT PANEL ── */
+  .content-panel {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--active-color, var(--blue));
+  }
+  .panel-grade-badge {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--active-color, var(--blue));
+  }
+  .panel-title-group h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .panel-title-group p {
+    font-size: 13px;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+
+  /* ── GRID ── */
+  .curriculum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 1100px) {
+    .curriculum-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .curriculum-grid { grid-template-columns: 1fr; }
+  }
+
+  .cell {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .cell-header {
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cell-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .cell-header h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .cell-body {
+    padding: 0 16px 16px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #374151;
+  }
+
+  /* cell colour themes */
+  .cell-results .cell-header { background: #eff6ff; }
+  .cell-results .cell-icon  { background: #dbeafe; }
+  .cell-results .cell-header h3 { color: #1e40af; }
+
+  .cell-lexicon .cell-header { background: #f0fdf4; }
+  .cell-lexicon .cell-icon  { background: #bbf7d0; }
+  .cell-lexicon .cell-header h3 { color: #15803d; }
+
+  .cell-grammar .cell-header { background: #fdf4ff; }
+  .cell-grammar .cell-icon  { background: #f3e8ff; }
+  .cell-grammar .cell-header h3 { color: #7e22ce; }
+
+  .cell-activities .cell-header { background: #fff7ed; }
+  .cell-activities .cell-icon  { background: #fed7aa; }
+  .cell-activities .cell-header h3 { color: #c2410c; }
+
+  /* items inside cells */
+  .result-section { margin-bottom: 12px; }
+  .result-section:last-child { margin-bottom: 0; }
+  .result-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #1e40af;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #dbeafe;
+  }
+
+  .lexicon-topic {
+    margin-bottom: 8px;
+  }
+  .lexicon-topic-title {
+    font-weight: 600;
+    font-size: 12px;
+    color: #15803d;
+    margin-bottom: 2px;
+  }
+  .lexicon-topic-items {
+    color: #374151;
+    font-size: 12px;
+  }
+
+  .grammar-lang {
+    margin-bottom: 10px;
+  }
+  .grammar-lang-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #7e22ce;
+    margin-bottom: 4px;
+  }
+  .grammar-tag {
+    display: inline-block;
+    background: #f3e8ff;
+    color: #6b21a8;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 11px;
+    margin: 2px 2px 2px 0;
+  }
+
+  .activity-cat {
+    margin-bottom: 9px;
+  }
+  .activity-cat-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #c2410c;
+    margin-bottom: 4px;
+  }
+  .activity-item {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 3px;
+    align-items: flex-start;
+  }
+  .activity-item::before {
+    content: '›';
+    color: #f97316;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── PLACEHOLDER ── */
+  .placeholder {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--slate);
+  }
+  .placeholder-icon { font-size: 48px; margin-bottom: 16px; }
+  .placeholder h3 { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .placeholder p { font-size: 14px; }
+
+  /* ── TRANSITIONS ── */
+  .content-panel { animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="ministry-label">Міністерство освіти і науки України</p>
+  <h1>Модельна навчальна програма<br>«Іноземна мова. 5–9 класи»</h1>
+  <p class="hero-sub">Автори: Зимомря І. М., Мойсюк В. А., Тріфан М. С., Унгурян І. К., Яковчук М. В.</p>
+  <span class="hero-decree">Наказ МОН України від 12.07.2021 № 795</span>
+</header>
+
+<div class="selector-wrap">
+  <p class="selector-label">Оберіть клас для перегляду програмних вимог</p>
+  <div class="grade-cards" id="gradeCards">
+    <div class="grade-card" data-grade="5" style="--card-color:#2563eb" onclick="selectGrade(5)">
+      <span class="grade-number">5</span>
+      <span class="grade-label">клас</span>
+      <span class="grade-cefr">A1+</span>
+    </div>
+    <div class="grade-card" data-grade="6" style="--card-color:#0d9488" onclick="selectGrade(6)">
+      <span class="grade-number">6</span>
+      <span class="grade-label">клас</span>
+      <span class="grade-cefr">A2</span>
+    </div>
+    <div class="grade-card" data-grade="7" style="--card-color:#7c3aed" onclick="selectGrade(7)">
+      <span class="grade-number">7</span>
+      <span class="grade-label">клас</span>
+      <span class="grade-cefr">A2+</span>
+    </div>
+    <div class="grade-card" data-grade="8" style="--card-color:#db2777" onclick="selectGrade(8)">
+      <span class="grade-number">8</span>
+      <span class="grade-label">клас</span>
+      <span class="grade-cefr">B1–</span>
+    </div>
+    <div class="grade-card" data-grade="9" style="--card-color:#d97706" onclick="selectGrade(9)">
+      <span class="grade-number">9</span>
+      <span class="grade-label">клас</span>
+      <span class="grade-cefr">B1</span>
+    </div>
+  </div>
+</div>
+
+<div class="content-panel" id="contentPanel">
+  <div class="placeholder">
+    <div class="placeholder-icon">📚</div>
+    <h3>Оберіть клас вище</h3>
+    <p>Натисніть на картку класу, щоб побачити програмні вимоги у вигляді сітки</p>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  5: {
+    color: '#2563eb',
+    cefr: 'A1+',
+    results: {
+      'Сприймання усної інформації': [
+        'Визначає мовленнєву ситуацію та зміст короткої простої розмови при чіткому й повільному мовленні',
+        'Розпізнає елементарні інструкції щодо часу, дат, номерів',
+        'Розпізнає важливі моменти розповіді, слідкує за сюжетом',
+      ],
+      'Сприймання письмового тексту': [
+        'Визначає основний зміст простих електронних повідомлень',
+        'Знаходить конкретну інформацію у списках та виокремлює деталі',
+        'Розпізнає повсякденні знаки та оголошення',
+        'Визначає етапи приготування страв за простими рецептами',
+      ],
+      'Усна взаємодія': [
+        'Реагує на чітке мовлення у простих повсякденних ситуаціях',
+        'Використовує прості ввічливі форми привітання та звертання',
+        'Запитує просту інформацію щодо подорожі, транспорту',
+        'Повідомляє про покупки, замовляє їжу',
+      ],
+      'Письмова взаємодія': [
+        'Повідомляє особисту інформацію, представляючи себе',
+        'Пише короткі листи-подяки, вітальні листівки',
+        'Бере участь в онлайн спілкуванні на базовому рівні',
+      ],
+      'Усне висловлювання': [
+        'Описує родину, житлові умови, освіту простими засобами',
+        'Розповідає про вміння та плани на вихідні',
+        'Відповідає на прості уточнювальні запитання',
+      ],
+    },
+    lexicon: {
+      'Я та моя сім\'я': ['особисті дані, вік, країна', 'родинні зв\'язки, риси характеру', 'професії батьків'],
+      'Мій дім': ['кімнати, меблі', 'домашні обов\'язки'],
+      'Одяг / зовнішність': ['види одягу, аксесуари, кольори'],
+      'Здоров\'я': ['частини тіла, самопочуття', 'здорове харчування'],
+      'Хобі / дозвілля': ['повсякденні дії', 'гаджети, фізична активність'],
+      'Покупки': ['назви валют, вартість товарів'],
+      'Середовище / погода': ['географічні об\'єкти, тварини', 'природні явища'],
+      'Школа': ['класна кімната, шкільне приладдя, предмети'],
+      'Україна / країна мови': ['державні свята, пам\'ятки, транспорт'],
+    },
+    grammar: {
+      'Англійська': ['Articles a/an', 'Noun plurals, countable/uncountable', 'Adjective comparatives', 'Adverbs of frequency', 'can / can\'t', 'Prepositions of place & time', 'Quantifiers some/any/lots of', 'Demonstrative & possessive pronouns', 'there is/are', 'have got', 'Present Simple', 'Present Continuous', 'Past Simple'],
+      'Німецька': ['Steigerungsstufen (Adverb)', 'Präpositionen mit Akkusativ', 'Kausalsätze (da, weil)', 'Nebensätze mit dass', 'Perfekt', 'Reflexive Verben'],
+      'Французька': ['Adjectifs démonstratifs', 'Comparatifs', 'Adverbes de temps', 'Articles (indéfinis, définis, partitifs)', 'Accord masculin/féminin', 'Pronom indéfini on', 'Prépositions de lieu', 'Présent, futur proche, passé composé'],
+      'Іспанська': ['Adjetivo (número y género)', 'Adverbio', 'Artículo determinado/indeterminado', 'Perífrasis verbales', 'Verbos regulares e irregulares', 'Presente de Indicativo', 'Pretérito Perfecto & Imperfecto', 'Imperativo Afirmativo'],
+    },
+    activities: {
+      'Комунікативні вміння': ['Форми звернень та привітань', 'Стратегії компенсації прогалин у мовленні', 'Невербальне спілкування (міміка, жести)'],
+      'Креативність': ['Розігрування ролей та театралізовані постановки', 'Участь у музичних видах діяльності'],
+      'Співпраця': ['Перепитування та прохання повторити', 'Участь у груповій роботі з різними ролями'],
+      'Навчання впродовж життя': ['Навчальні словники та додаткові ресурси', 'Навчальні проєкти з доступними ресурсами'],
+      'Емоційний розвиток': ['Сприймання похвали і критики', 'Обговорення власних емоцій', 'Розуміння емоцій інших'],
+      'Соціальна відповідальність': ['Правила поведінки у соціальних групах', 'Демонстрація поваги до культурного розмаїття'],
+    },
+  },
+  6: {
+    color: '#0d9488',
+    cefr: 'A2',
+    results: {
+      'Сприймання усної інформації': [
+        'Виокремлює основний зміст коротких повідомлень та оголошень',
+        'Визначає теми у переглянутих відеозаписах',
+        'Виокремлює важливу інформацію з програм',
+      ],
+      'Сприймання письмового тексту': [
+        'Виокремлює інформацію з особистих листів та електронних повідомлень',
+        'Визначає факти у фактологічному описі чи розповіді',
+        'Знаходить інформацію в коміксах та фото-історіях',
+      ],
+      'Усна взаємодія': [
+        'Спілкується з однолітками, розповідає про уподобання та плани',
+        'Веде розмову щодо повсякденних завдань',
+        'Розпитує та пояснює, як дістатися місця з допомогою карти',
+        'Запитує та розповідає про навчання та дозвілля',
+      ],
+      'Письмова взаємодія': [
+        'Пише короткі записки та електронні повідомлення',
+        'Занотовує події, дати та час',
+        'Вносить інформацію у типові бланки',
+        'Робить онлайн коментарі, заповнює анкети',
+      ],
+      'Усне висловлювання': [
+        'Дає прояснення щодо повсякденної діяльності',
+        'Висловлює аргументовану думку (можливо повільно)',
+        'Робить коротку підготовлену презентацію',
+      ],
+    },
+    lexicon: {
+      'Сім\'я': ['члени сім\'ї, риси характеру'],
+      'Мій дім': ['опис будинку/квартири'],
+      'Покупки / харчування': ['страви, напої', 'покупки онлайн та в магазинах'],
+      'Відпочинок': ['розпорядок дня', 'міський і міжміський транспорт', 'цифрові пристрої, інтернет, телебачення'],
+      'Здоров\'я і спорт': ['здоровий спосіб життя', 'спортивні ігри та знаряддя'],
+      'Мистецтво': ['книги, журнали', 'музичні напрямки та інструменти'],
+      'Середовище / погода': ['зміна клімату, екстремальні умови'],
+      'Тваринний світ': ['дикі та свійські тварини'],
+      'Школа': ['шкільні подорожі, позакласні заняття'],
+    },
+    grammar: {
+      'Англійська': ['Comparative & superlative adj.', 'as ... as', 'Adverbs of manner', 'can, should, have to', 'Prepositions of place', 'Possessive & independent pronouns', 'Quantifiers some/any/a lot of', 'verb be / there is / have got', 'Present Continuous & Simple', 'Past Simple & Continuous', 'Future Simple'],
+      'Німецька': ['Adjektiv Deklination', 'Präpositionen mit Dativ', 'Relativpronomen', 'Finalsatz (damit)', 'Starke Deklinationen', 'Präteritum', 'Infinitivkonstruktion um...zu'],
+      'Французька': ['Adjectifs possessifs', 'Adverbes de durée', 'Pronoms démonstratifs/possessifs', 'Présent (état, progression)', 'Futur proche & simple', 'Imparfait', 'Passé composé'],
+      'Іспанська': ['Grados de comparación', 'Adverbio de lugar', 'Estar + Participio / Gerundio', 'Futuro Simple', 'Imperativo Afirmativo', 'Formas impersonales'],
+    },
+    activities: {
+      'Комунікативні вміння': ['Ініціювання та підтримка бесіди', 'Стратегії компенсації (синоніми, контекст)', 'Діалоги з техніками початку та завершення'],
+      'Критичне мислення': ['Аналіз усних/письмових повідомлень', 'Виявлення проблем у плануванні'],
+      'Креативність': ['Драматичні види діяльності', 'Продукування повідомлень на основі власних ідей'],
+      'Співпраця': ['Активне слухання (вигуки, зворотній зв\'язок)', 'Моделювання етапів виконання завдання'],
+      'Навчання впродовж життя': ['Граматичні та фонологічні концепції', 'Графічні організатори', 'Навчальні проєкти'],
+      'Емоційний розвиток': ['Стратегії управління емоціями'],
+      'Соціальна відповідальність': ['Проєкти соціального спрямування (волонтерство)', 'Базові фінансові процеси'],
+    },
+  },
+  7: {
+    color: '#7c3aed',
+    cefr: 'A2+',
+    results: {
+      'Сприймання усної інформації': [
+        'Стежить за основним змістом розгорнутої дискусії',
+        'Виконує детальні інструкції',
+        'Розпізнає оголошення в аеропортах, на вокзалах',
+        'Визначає зміст оповідань при відносно повільному мовленні',
+      ],
+      'Сприймання письмового тексту': [
+        'Визначає зміст описів подій в особистих листах',
+        'Знаходить релевантну інформацію в листах, брошурах',
+        'Розпізнає фабулу оповідань із чіткою сюжетною лінією',
+        'Визначає зміст стислих описів на інформаційних дошках',
+      ],
+      'Усна взаємодія': [
+        'Вступає без підготовки в розмови на знайомі теми',
+        'Висловлює власні погляди та запитує думку співрозмовника',
+        'Знаходить і передає просту фактичну інформацію',
+        'Дає пораду щодо простих запитань',
+      ],
+      'Письмова взаємодія': [
+        'Пише прості листи та повідомлення фактологічного характеру',
+        'Ініціює, підтримує і завершує онлайн дискусії',
+        'Розміщує дописи на знайомі теми',
+      ],
+      'Усне висловлювання': [
+        'Описує різноманітні знайомі предмети',
+        'Подає фактологічну інформацію після підготовки',
+        'Висловлює думку щодо повсякденного життя',
+      ],
+    },
+    lexicon: {
+      'Я, родина, друзі': ['сторінка в соцмережах', 'риси характеру, відносини'],
+      'Улюблені речі': ['особисті речі, матеріали', 'помешкання, опис кімнати'],
+      'Спорт': ['види спорту і змагань', 'учасники спортивних подій'],
+      'Відпочинок / дозвілля': ['дитячі гуртки'],
+      'Їжа': ['страви, способи приготування'],
+      'Кіно / Література': ['жанри фільмів та літератури'],
+      'Інтернет': ['сайти, соцмережі, користь і шкода'],
+      'Школа': ['предмети, навчальна діяльність', 'способи вивчення іноземних мов'],
+      'Україна': ['шкільна освіта', 'Олімпійський рух'],
+    },
+    grammar: {
+      'Англійська': ['Reflexive pronouns', 'Relative pronouns who/which/that', 'First conditional', 'Quantifiers all/both/other', 'Countable/uncountable nouns', 'Comparative/superlative adverbs', 'Gerund and Infinitive', 'Present Perfect', 'Passive (Present & Past Simple)', 'must/mustn\'t/have to'],
+      'Німецька': ['Adjektiv als Attribut', 'Konditionalsätze (wenn)', 'Temporalsätze (als, wenn)', 'Hilfsverb werden, Futur I', 'Bruchzahlen'],
+      'Французька': ['Comparatifs adj./adv.', 'Pronoms COD/COI, en/y', 'Prépositions de temps', 'Restriction ne...que'],
+      'Іспанська': ['Concordancia adjetivo/sustantivo', 'I tipo oraciones condicionales', 'Perífrasis (deber+inf., volver a +inf.)', 'Modo Imperativo + Pronombres', 'Voz pasiva (ser + participio)'],
+    },
+    activities: {
+      'Комунікативні вміння': ['Ініціювання бесіди з синонімами та невербальними засобами', 'Заохочення співрозмовників'],
+      'Критичне мислення': ['Визначення проблем у плануванні', 'Дослідження можливих рішень'],
+      'Креативність': ['Постери та веб-сторінки з власними ідеями', 'Групові навчальні проєкти'],
+      'Співпраця': ['Пропозиції відповідно до теми бесіди', 'Аналіз виконаного завдання'],
+      'Навчання впродовж життя': ['Записник з лексикою', 'Навчальні словники і ресурси', 'Нотатки під час читання/слухання'],
+      'Емоційний розвиток': ['Реагування на похвалу і критику', 'Вплив емоцій на навчання'],
+      'Соціальна відповідальність': ['Участь у колективній діяльності школи', 'Обговорення глобальних проблем'],
+    },
+  },
+  8: {
+    color: '#db2777',
+    cefr: 'B1–',
+    results: {
+      'Сприймання усної інформації': [
+        'Розпізнає просту технічну інформацію та детальні інструкції',
+        'Визначає основний зміст випусків новин',
+        'Розпізнає зміст фільмів за відеорядом та вчинками героїв',
+        'Розпізнає оголошення в аеропортах і на вокзалах',
+      ],
+      'Сприймання письмового тексту': [
+        'Визначає зміст описів у листах та дописах Інтернету',
+        'Виокремлює основний зміст простих статей',
+        'Встановлює послідовність інструкцій до побутових приладів',
+        'Знаходить інформацію у щоденнику мандрівника',
+      ],
+      'Усна взаємодія': [
+        'Висловлює погляди та запитує думку співрозмовника',
+        'Визначає основний зміст; повторює для пересвідчення',
+        'Орієнтується у ситуаціях подорожі та покупок',
+        'Знаходить і передає просту фактичну інформацію',
+      ],
+      'Письмова взаємодія': [
+        'Пише особисті листи, описуючи досвід та почуття',
+        'Пише записки для друзів, учителів, сфери обслуговування',
+        'Розміщує дописи про особистий досвід в Інтернеті',
+        'Співпрацює онлайн над спільними проєктами',
+      ],
+      'Усне висловлювання': [
+        'Передає зміст книги або фільму',
+        'Стисло аргументує власні думки та плани',
+        'Схвалює чи не схвалює дії іншої особи',
+      ],
+    },
+    lexicon: {
+      'Я, сім\'я, друзі': ['особливі події, стиль життя'],
+      'Покупки / харчування': ['магазини, одяг, бренд', 'здорове харчування'],
+      'Спорт': ['обладнання, спортивні майданчики'],
+      'Місто': ['міська інфраструктура', 'забруднення, перенаселення, затори'],
+      'Подорожі': ['аеропорт, перельоти'],
+      'Середовище': ['заходи захисту довкілля'],
+      'Мистецтво / кіно / ТБ': ['жанри фільмів, живопис, митці'],
+      'Технології': ['функції пристроїв, цифрові додатки'],
+      'Робота / наука': ['сучасні професії', 'види експериментів'],
+      'Україна': ['традиційні страви, національний одяг'],
+    },
+    grammar: {
+      'Англійська': ['Second conditional', 'Third conditional', 'Reported commands & speech', 'Zero & First conditional', 'Obligation (must, should, have to)', 'Probability (might, could, can\'t, must)', 'Present Perfect vs Past Simple', 'Past Continuous', 'Passive voice'],
+      'Німецька': ['Pronominaladverbien', 'Präpositionen mit Genitiv', 'Attributsätze', 'Temporalsätze (nachdem)', 'Plusquamperfekt', 'Eigennamen'],
+      'Французька': ['Adverbes de lieu', 'Si + présent (hypothèse)', 'Plus-que-parfait', 'Forme passive', 'Conditionnel présent'],
+      'Іспанська': ['El neutro "lo"', 'Comparativas "más de / menos de"', 'Soler/seguir + inf.', 'Pretérito Pluscuamperfecto', 'El plural de sustantivos compuestos'],
+    },
+    activities: {
+      'Комунікативні вміння': ['Презентація усних повідомлень', 'Синоніми та зв\'язні мовленнєві інструменти', 'Послідовний виклад пунктів'],
+      'Критичне мислення': ['Порівняння аргументів з різних джерел', 'Групування фактів та суджень', 'Аналіз причин і наслідків'],
+      'Креативність': ['Аналіз проблем з різних сторін', 'Медіатексти (постери, веб-сторінки)', 'Власне ставлення до твору мистецтва'],
+      'Співпраця': ['Пояснення, уточнення, мотивування інших', 'Аналіз різних точок зору'],
+      'Навчання впродовж життя': ['Записник з лексичним інвентарем', 'Стратегії вдосконалення навчання (графічні організатори)', 'Уникання плагіату'],
+      'Емоційний розвиток': ['Стратегії вирішення складних ситуацій', 'Впевненість у публічному мовленні'],
+      'Соціальна відповідальність': ['Участь у колективній діяльності школи і громади', 'Обговорення глобальних проблем та міжнародного співробітництва'],
+    },
+  },
+  9: {
+    color: '#d97706',
+    cefr: 'B1',
+    results: {
+      'Сприймання усної інформації': [
+        'Розуміє просту добре структуровану презентацію зі слайдами',
+        'Визначає основний зміст випусків новин і телепрограм',
+        'Розпізнає оголошення в аеропортах і на вокзалах',
+        'Розпізнає зміст фільмів за відеорядом та вчинками героїв',
+      ],
+      'Сприймання письмового тексту': [
+        'Виокремлює інформацію з листів, дописів, інструкцій',
+        'Добирає важливу інформацію на упаковках',
+        'Розпізнає докладний опис місць, подій, почуттів',
+        'Розпізнає фабулу оповідань із чіткою сюжетною лінією',
+      ],
+      'Усна взаємодія': [
+        'Висловлює погляди та припущення з аргументами',
+        'Орієнтується у більшості ситуацій подорожі',
+        'Просить пояснити різницю між аналогічними товарами',
+        'Дає пораду в межах своєї компетентності',
+      ],
+      'Письмова взаємодія': [
+        'Пише особисті листи, детально описує досвід',
+        'Розміщує дописи з детальними відповідями на коментарі',
+        'Взаємодіє онлайн з партнером над проєктом',
+      ],
+      'Усне висловлювання': [
+        'Досить вільно описує предмети зі сфери інтересів',
+        'Передає зміст книги чи фільму',
+        'Робить підготовлену презентацію з поясненням головних моментів',
+        'Аргументує думки, плани, схвалює або не схвалює дії',
+      ],
+    },
+    lexicon: {
+      'Я, друзі, захоплення': ['риси характеру, настрій', 'рукоділля'],
+      'Здоров\'я / спорт': ['перша допомога, аптечка', 'продукти, способи приготування', 'відомі спортсмени, тренування'],
+      'Спілкування': ['культура спілкування', 'онлайн спілкування', 'мрії, волонтерство'],
+      'Покупки': ['магазини, операції з грошима'],
+      'Погода': ['екстремальні умови у різних країнах'],
+      'Мистецтво': ['музичні твори та події', 'архітектура', 'жанри фільмів'],
+      'Технології / Інтернет': ['соцмережі, додатки смартфона', 'новітні винаходи'],
+      'Навколишнє середовище': ['екологічні проблеми та шляхи вирішення'],
+      'Подорожі / місто-село': ['самостійне подорожування', 'переваги/недоліки міста і села'],
+    },
+    grammar: {
+      'Англійська': ['Third conditional', 'Reported speech & questions', 'Non-defining relative clauses', 'Clauses of purpose/reason/contrast', 'Future Continuous', 'Present Perfect vs Past Simple', 'Past Perfect', 'have something done', 'Extreme adjectives & adverbs', 'used to'],
+      'Німецька': ['Systematisierung Pronomen', 'Lokalsätze mit wo/wohin/woher', 'Präsens und Präteritum Passiv', 'Infinitivkonstruktionen statt...zu / ohne...zu'],
+      'Французька': ['Pronoms relatifs simples et composés', 'Hypothèse (si + imparfait / conditionnel)', 'Regret (si + plus-que-parfait)', 'Conditionnel présent', 'Concordance des temps'],
+      'Іспанська': ['Condicional Simple', 'Presente de Subjuntivo', 'Imperativo Negativo', 'Concordancia de tiempos (Indicativo)', 'Perífrasis ir/andar/quedar + gerundio'],
+    },
+    activities: {
+      'Комунікативні вміння': ['Адаптація мовлення до співрозмовника', 'Перефразування сказаного іншими', 'Презентація підготовленого висловлення'],
+      'Критичне мислення': ['Виокремлення доказів та перевірка надійності', 'Ідентифікування здогадки в аргументах', 'Аналіз причин і наслідків проблем'],
+      'Креативність': ['Гіпотетичні ситуації', 'Медіатексти на основі власних ідей', 'Написання за заголовком/початком'],
+      'Співпраця': ['Покроково план проєкту', 'Аналіз та оцінювання виконаного проєкту', 'Слухання та облік думок учасників'],
+      'Навчання впродовж життя': ['Картування висловлень з графічними організаторами', 'Планування шляхів вдосконалення вмінь', 'Уникання плагіату у власних висловленнях'],
+      'Емоційний розвиток': ['Опис спектру різних емоцій', 'Стратегії вирішення складних ситуацій', 'Конструктивне ведення переговорів'],
+      'Соціальна відповідальність': ['Права та обов\'язки індивіда в суспільстві', 'Обговорення глобальних проблем (бідність, міграція, клімат)', 'Впевненість у публічних виступах'],
+    },
+  },
+};
+
+const COLORS = { results: '#1e40af', lexicon: '#15803d', grammar: '#7e22ce', activities: '#c2410c' };
+
+let activeGrade = null;
+
+function selectGrade(grade) {
+  activeGrade = grade;
+  document.querySelectorAll('.grade-card').forEach(c => c.classList.remove('active'));
+  document.querySelector(`[data-grade="${grade}"]`).classList.add('active');
+  renderPanel(grade);
+}
+
+function renderPanel(grade) {
+  const d = DATA[grade];
+  const panel = document.getElementById('contentPanel');
+  panel.style.animation = 'none';
+  panel.offsetHeight;
+  panel.style.animation = '';
+
+  const resultItems = Object.entries(d.results)
+    .map(([sec, items]) => `
+      <div class="result-section">
+        <div class="result-section-title">${sec}</div>
+        ${items.map(i => `<div class="activity-item">${i}</div>`).join('')}
+      </div>`)
+    .join('');
+
+  const lexiconItems = Object.entries(d.lexicon)
+    .map(([topic, items]) => `
+      <div class="lexicon-topic">
+        <div class="lexicon-topic-title">📌 ${topic}</div>
+        <div class="lexicon-topic-items">${items.join('; ')}</div>
+      </div>`)
+    .join('');
+
+  const grammarItems = Object.entries(d.grammar)
+    .map(([lang, tags]) => `
+      <div class="grammar-lang">
+        <div class="grammar-lang-label">${lang}</div>
+        ${tags.map(t => `<span class="grammar-tag">${t}</span>`).join('')}
+      </div>`)
+    .join('');
+
+  const activityItems = Object.entries(d.activities)
+    .map(([cat, items]) => `
+      <div class="activity-cat">
+        <div class="activity-cat-title">${cat}</div>
+        ${items.map(i => `<div class="activity-item">${i}</div>`).join('')}
+      </div>`)
+    .join('');
+
+  panel.innerHTML = `
+    <div class="panel-header" style="--active-color:${d.color}">
+      <div class="panel-grade-badge" style="color:${d.color}">${grade}</div>
+      <div class="panel-title-group">
+        <h2>Програмні вимоги — ${grade} клас</h2>
+        <p>Рівень CEFR: <strong>${d.cefr}</strong> &nbsp;·&nbsp; Іноземна мова (5–9 кл.)</p>
+      </div>
+    </div>
+    <div class="curriculum-grid">
+      <div class="cell cell-results">
+        <div class="cell-header">
+          <div class="cell-icon">🎯</div>
+          <h3>Очікувані результати навчання (за видами мовленнєвої діяльності)</h3>
+        </div>
+        <div class="cell-body">${resultItems}</div>
+      </div>
+      <div class="cell cell-lexicon">
+        <div class="cell-header">
+          <div class="cell-icon">📖</div>
+          <h3>Лексичний інвентар</h3>
+        </div>
+        <div class="cell-body">${lexiconItems}</div>
+      </div>
+      <div class="cell cell-grammar">
+        <div class="cell-header">
+          <div class="cell-icon">⚙️</div>
+          <h3>Граматичний інвентар</h3>
+        </div>
+        <div class="cell-body">${grammarItems}</div>
+      </div>
+      <div class="cell cell-activities">
+        <div class="cell-header">
+          <div class="cell-icon">🌱</div>
+          <h3>Види навчальної діяльності</h3>
+        </div>
+        <div class="cell-body">${activityItems}</div>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
