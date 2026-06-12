@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "ESP32-CAM-interface",
+			"path": "../../PlatformIO/Projects/ESP32-CAM-interface"
+		},
+		{
+			"name": "esp32-cam-car",
+			"path": "../esp32-cam-car"
+		},
+		{
+			"name": "esp32lab",
+			"path": "../../PlatformIO/Projects/esp32lab"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "samootsinkka"
+	}
+}

@@ -169,6 +169,55 @@ body::before {
 }
 .mob-nav__item.current .mob-menu__link { color: var(--gold-lt); }
 
+
+/* Tags row */
+.lesson-tags {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  margin-top: 1.2rem;
+  animation: fadeUp .5s .3s ease both;
+}
+
+
+.tag {
+  font-family: 'Geologica', sans-serif;
+  font-size: .72rem; font-weight: 500;
+  color: #6a7585; background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px; padding: .22rem .7rem;
+  cursor: default; transition: background .15s, border-color .15s;
+}
+.tag:hover { background: rgba(201,168,76,.12); border-color: rgba(201,168,76,.35); color: var(--gold-lt); }
+
+
+/* ═══════════════════════════════════════════
+   LESSON HEADER CARD
+═══════════════════════════════════════════ */
+.lesson-hero {
+  background: linear-gradient(135deg, var(--ink) 0%, #162032 60%, #0d2a1f 100%);
+  border-bottom: 3px solid var(--gold);
+  padding: clamp(2rem, 6vh, 4rem) 0;
+  position: relative; overflow: hidden;
+}
+.lesson-hero::before {
+  content: ''; position: absolute;
+  top: -60px; right: -80px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lesson-hero::after {
+  content: ''; position: absolute;
+  bottom: -40px; left: 5%;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,106,90,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lesson-hero .container { position: relative; z-index: 1; }
+
+
+
+
 /* ═══════════════════════════════════════════════════
    HERO  404
 ═══════════════════════════════════════════════════ */
