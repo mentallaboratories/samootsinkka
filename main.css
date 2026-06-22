@@ -228,6 +228,12 @@ body::before {
   display: flex; align-items: center;
   padding: clamp(4rem,12vh,8rem) 0;
 }
+.hero-image {
+  width: 100%; max-width: 480px;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 48px rgba(13,17,23,.3);
+  animation: fadeUp .6s .4s ease both;
+}
 
 /* decorative circles */
 .hero::before, .hero::after {
