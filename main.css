@@ -229,7 +229,7 @@ body::before {
   padding: clamp(4rem,12vh,8rem) 0;
 }
 .hero-image {
-  width: 100%; max-width: 480px;
+  width: 100%; 
   height: auto;
   border-radius: var(--radius);
   box-shadow: 0 12px 48px rgba(13,17,23,.3);
