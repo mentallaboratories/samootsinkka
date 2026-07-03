@@ -230,6 +230,7 @@ body::before {
 }
 .hero-image {
   width: 100%; max-width: 480px;
+  height: auto;
   border-radius: var(--radius);
   box-shadow: 0 12px 48px rgba(13,17,23,.3);
   animation: fadeUp .6s .4s ease both;
