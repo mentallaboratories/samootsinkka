@@ -102,11 +102,13 @@ body::before {
 }
 .nav__item:hover { background: rgba(201,168,76,.12); }
 .nav__item.current { background: rgba(201,168,76,.18); }
+.nav__item.passed { background: rgba(132, 232, 104, 0.18); border: #1a6b5a 1px solid; border-radius: 50%; }
 
 .nav__icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
 .nav__icon svg { width: 28px; height: 28px; fill: #9aa5b4; transition: fill .18s; }
 .nav__item:hover .nav__icon svg,
 .nav__item.current .nav__icon svg { fill: var(--gold); }
+.nav__item.passed .nav__icon svg { fill: limegreen; }
 
 .nav__link--gdisk {
   font-family: 'Unbounded', sans-serif;

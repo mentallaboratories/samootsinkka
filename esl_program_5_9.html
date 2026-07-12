@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Іноземна мова 5–9 класи — Модельна навчальна програма</title>
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="styles.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap');
 
@@ -350,13 +352,141 @@
 </style>
 </head>
 <body>
+<!-- ════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════ -->
+<header class="header">
+  <div class="container">
+    <div class="header__container">
 
-<header class="hero">
+      <a class="logo home" href="./index.html">
+        <span class="accent">Skool</span>Timez
+      </a>
+
+      <nav class="header__nav">
+        <ul class="nav">
+
+          <li>
+            <a class="nav__item" href="./index.html">
+              <div class="nav__icon ">
+                <svg width="48" height="48"><use href="icon.svg#icon-home"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./index.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./state_standart.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
+              </div>
+              <span class="nav__link--gdisk">Objectives</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./it.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-it"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./it.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./timetable.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./timetable.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./guide.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./guide.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./myprojects.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./myprojects.html</span>
+            </a>
+          </li>
+
+                    <li>
+            <a class="nav__item" href="./user.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-head"/></svg>
+              </div>
+              <span class="nav__link--gdisk">My Profile</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item current" href="./esl_program_5_9.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-speaking-skill"/></svg>
+              </div>
+              <span class="nav__link--gdisk">ESL 5-9</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Hamburger -->
+      <button type="button" class="menu-btn" id="menuOpen">
+        <svg class="rotate180" width="48" height="48">
+          <use href="icon.svg#icon-steps"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile modal -->
+  <div class="mob-modal is-hidden" id="mobModal">
+    <button type="button" class="close__button" id="menuClose">
+      <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
+    </button>
+    <ul class="mob-menu__nav">
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
+        <a class="mob-menu__link" href="./index.html">./index.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
+        <a class="mob-menu__link" href="./it.html">./it.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
+        <a class="mob-menu__link" href="./timetable.html">./timetable.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
+        <a class="mob-menu__link" href="./guide.html">./guide.html</a>
+      </li>
+      <li class="mob-nav__item current">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
+        <a class="mob-menu__link" href="./storage.html">./storage.html</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
   <p class="ministry-label">Міністерство освіти і науки України</p>
   <h1>Модельна навчальна програма<br>«Іноземна мова. 5–9 класи»</h1>
   <p class="hero-sub">Автори: Зимомря І. М., Мойсюк В. А., Тріфан М. С., Унгурян І. К., Яковчук М. В.</p>
   <span class="hero-decree">Наказ МОН України від 12.07.2021 № 795</span>
-</header>
+</section>
 
 <div class="selector-wrap">
   <p class="selector-label">Оберіть клас для перегляду програмних вимог</p>

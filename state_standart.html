@@ -6,8 +6,9 @@
 <title>Держстандарт — Іноземна мова</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
 <link rel="stylesheet" href="styles.css">
-<!-- <style>
+<style>
   /* ── RESET & TOKENS ───────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -480,7 +481,7 @@
   .dual-cards-grid .dual-card:nth-child(6){ animation-delay:.40s }
   .dual-cards-grid .dual-card:nth-child(7){ animation-delay:.47s }
   .dual-cards-grid .dual-card:nth-child(8){ animation-delay:.54s }
-</style> -->
+</style>
 
 </head>
 <body>
@@ -488,97 +489,164 @@
 <!-- ════════════════════════════════════════════════════════════
      HEADER
 ════════════════════════════════════════════════════════════ -->
-<header class="site-header">
+<header class="header">
   <div class="container">
-    <a class="logo" href="./index.html"><span class="accent">Skool</span>Timez</a>
-    <ul class="header-nav">
-      <li><a href="./myprojects.html">Projects</a></li>
-      <li><a href="./lesson.html" class="active">Lesson</a></li>
-      <li><a href="./state_standart.html">Achievements</a></li>
+    <div class="header__container">
+
+      <a class="logo home" href="./index.html">
+        <span class="accent">Skool</span>Timez
+      </a>
+
+      <nav class="header__nav">
+        <ul class="nav">
+
+          <li>
+            <a class="nav__item" href="./index.html">
+              <div class="nav__icon ">
+                <svg width="48" height="48"><use href="icon.svg#icon-home"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./index.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item current" href="./state_standart.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-estimate"/></svg>
+              </div>
+              <span class="nav__link--gdisk">Objectives</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./it.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-it"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./it.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./timetable.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./timetable.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./guide.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./guide.html</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./myprojects.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-portfolio"/></svg>
+              </div>
+              <span class="nav__link--gdisk">./myprojects.html</span>
+            </a>
+          </li>
+
+                    <li>
+            <a class="nav__item" href="./user.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-head"/></svg>
+              </div>
+              <span class="nav__link--gdisk">My Profile</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav__item" href="./esl_program_5_9.html">
+              <div class="nav__icon">
+                <svg width="48" height="48"><use href="icon.svg#icon-speaking-skill"/></svg>
+              </div>
+              <span class="nav__link--gdisk">ESL 5-9</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Hamburger -->
+      <button type="button" class="menu-btn" id="menuOpen">
+        <svg class="rotate180" width="48" height="48">
+          <use href="icon.svg#icon-steps"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile modal -->
+  <div class="mob-modal is-hidden" id="mobModal">
+    <button type="button" class="close__button" id="menuClose">
+      <svg width="24" height="24"><use href="icon.svg#icon-cross"/></svg>
+    </button>
+    <ul class="mob-menu__nav">
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-home"/></svg></div>
+        <a class="mob-menu__link" href="./index.html">./index.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-it"/></svg></div>
+        <a class="mob-menu__link" href="./it.html">./it.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-timetable"/></svg></div>
+        <a class="mob-menu__link" href="./timetable.html">./timetable.html</a>
+      </li>
+      <li class="mob-nav__item">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-flower"/></svg></div>
+        <a class="mob-menu__link" href="./guide.html">./guide.html</a>
+      </li>
+      <li class="mob-nav__item current">
+        <div class="nav__icon"><svg width="48" height="48"><use href="icon.svg#icon-docs"/></svg></div>
+        <a class="mob-menu__link" href="./storage.html">./storage.html</a>
+      </li>
     </ul>
   </div>
 </header>
 
 
+
 <!-- ════════════════════════════════════════════════════════════
      HERO — 6 капелюхів Боно
 ════════════════════════════════════════════════════════════ -->
-<section id="hero">
-  <div>
-    <p class="hero-eyebrow">Держстандарт базової освіти · 2020 · Освітня галузь «Мови і літератури»</p>
-    <h1 class="hero-title">Результати навчання<br><em>іноземної мови</em><br>крізь 6 капелюхів</h1>
-    <p class="hero-sub">
-      Метод «Шість капелюхів мислення» Едварда де Боно — інструмент багатовимірного аналізу.
-      Розглянемо Держстандарт з іноземної мови з шести принципово різних перспектив.
-    </p>
-  </div>
-
-  <div>
-    <p class="hats-label">Шість перспектив аналізу стандарту</p>
-    <div class="hats-grid">
-
-      <div class="hat-card hat-white">
-        <span class="hat-icon">🎩</span>
-        <p class="hat-title">Білий капелюх — Факти</p>
-        <p class="hat-body">
-          Стандарт охоплює <strong style="color:#f0f0e8">3 групи результатів</strong> для 1–4 класів:
-          сприйняття інформації, розуміння текстів та надання інформації.
-          Усього <strong style="color:#f0f0e8">17 конкретних результатів</strong> навчання.
-          Результати прив'язані до 2-го і 4-го класів як контрольних точок.
-        </p>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      
+      <div class="hero-eyebrow">state-standart. Державний стандарт</div>
+      <h1 class="hero-title">Chivos<br> досягнення</h1>
+      <p class="hero-subtitle">Що ви зобов'язані знати, розуміти, практикувати. · 0 відео</p>
+      <p class="hero-eyebrow" style="width: 100%; text-align: right;">Теги/Tags</p>
+      <!---tags  -->
+  <div class="lesson-tags" style="padding: 5px;">
+        <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#держстандарт</span></a>
+         <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#ключові-компетенції</span></a>
+        <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#програма</span></a>
+        <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#календарне</span></a>
+        <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#словник</span></a>
+        <a href="./404.html" class="" style="text-decoration: none;"><span class="tag">#навички</span></a>
       </div>
-
-      <div class="hat-card hat-red">
-        <span class="hat-icon">🧢</span>
-        <p class="hat-title">Червоний капелюх — Емоції</p>
-        <p class="hat-body">
-          Стандарт <strong style="color:#ffb0bc">надихає</strong>: діти вже з 1 класу спілкуються
-          іноземною мовою! Можна відчути хвилювання першокласника, що вперше розуміє запитання
-          іноземною мовою і відповідає — нехай жестом, але розуміє. Це <em style="color:#ffb0bc">магічний момент</em>.
-        </p>
-      </div>
-
-      <div class="hat-card hat-black">
-        <span class="hat-icon">🖤</span>
-        <p class="hat-title">Чорний капелюх — Критика</p>
-        <p class="hat-body">
-          Контрольні точки лише у 2-му і 4-му класах — значна <strong style="color:#d8d8d8">прогалина</strong>
-          для моніторингу прогресу. Відсутні кількісні індикатори (словниковий запас, тривалість
-          монологу). Широкі формулювання ускладнюють об'єктивне оцінювання результатів.
-        </p>
-      </div>
-
-      <div class="hat-card hat-yellow">
-        <span class="hat-icon">💛</span>
-        <p class="hat-title">Жовтий капелюх — Оптимізм</p>
-        <p class="hat-body">
-          Комунікативний підхід — <strong style="color:#f4c430">сучасний і ефективний</strong>.
-          Акцент на реальному спілкуванні (запитати, відповісти, написати) формує практичні
-          навички з першого класу. Інтеграція онлайн-взаємодії у стандарт — <em style="color:#f4c430">перспективний крок</em>.
-        </p>
-      </div>
-
-      <div class="hat-card hat-green">
-        <span class="hat-icon">💚</span>
-        <p class="hat-title">Зелений капелюх — Творчість</p>
-        <p class="hat-body">
-          Ідея: доповнити стандарт <strong style="color:#6ddcba">STEM-інтеграцією</strong> —
-          описати фізичний дослід, пояснити математичну задачу іноземною мовою.
-          Можливість проєктних форматів: учні знімають відео-інструкції, ведуть щоденник
-          мандрівника, створюють персонажів з родовідними деревами англійською.
-        </p>
-      </div>
-
-      <div class="hat-card hat-blue">
-        <span class="hat-icon">💙</span>
-        <p class="hat-title">Синій капелюх — Процес</p>
-        <p class="hat-body">
-          Логіка стандарту чітка: від <strong style="color:#8bbfff">сприйняття → до розуміння → до продукування</strong>.
-          Три групи охоплюють аудіювання, читання та говоріння/письмо — повний комунікативний цикл.
-          Рекомендована послідовність освоєння: 1 → 2 → 3 група по кожному класу.
-        </p>
-      </div>
-
+      <img src="./images/layout/bookshelf-subjects-bla.png" alt="Lesson layout" width="100%" class="hero-image" style="padding: 5px;">
+      <table class="hero-table">
+        <tr><td>Key</td><td>Item</td></tr>
+        <tr><td>About</td><td>Це сайт про освітній проект "SkoolTimez"</td></tr>
+    </table>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-num">28</span><div class="stat-label">проєктів</div></div>
+      <div class="stat-card"><span class="stat-num">12</span><div class="stat-label">платформ</div></div>
+      <div class="stat-card"><span class="stat-num">14</span><div class="stat-label">предмети</div></div>
     </div>
   </div>
 </section>
