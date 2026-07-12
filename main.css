@@ -225,8 +225,10 @@ body::before {
   flex: 1;
   background: linear-gradient(145deg, var(--ink) 0%, #162032 55%, #0d2a1f 100%);
   position: relative; overflow: hidden;
-  display: flex; align-items: center;
-  padding: clamp(4rem,12vh,8rem) 0;
+  display: flex; 
+  align-items: left;
+  justify-content: center;
+  padding: 5;
 }
 .hero-image {
   width: 100%; 
@@ -300,7 +302,7 @@ body::before {
   font-family: 'Unbounded', sans-serif;
   font-size: clamp(1.4rem, 3.5vw, 2.6rem);
   font-weight: 900; line-height: 1.1; color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 5px;
 }
 
 .hero-desc {
